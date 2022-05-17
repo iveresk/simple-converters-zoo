@@ -4,11 +4,8 @@ import argparse
 
 
 def main(xmlfile, csvfile):
-    try:
-        f = open(xmlfile, "r")
-        xml = f.read()
-    except Exception:
-        print("\n Error openning XML file: " + str(Exception))
+    f = open(xmlfile, "r")
+    xml = f.read()
     df = pd.DataFrame(xmltodict.parse(str(xml)))
     df.rename(columns=lambda x: x.replace('@', ''), inplace=True)
     df.to_csv(csvfile)
