@@ -16,4 +16,4 @@ if __name__ == '__main__':
     parser.add_argument("--xml", "-x", type=str, required=True)
     parser.add_argument("--csv", "-c", type=str, required=True)
     args = parser.parse_args()
-    main(args.file[0], args.file[1])
+    main(args.xml, args.csv)
