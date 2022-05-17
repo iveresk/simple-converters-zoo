@@ -13,9 +13,7 @@ def main(xmlfile, csvfile):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('file', type=argparse.FileType(), nargs='+')
+    parser.add_argument("--xml", "-x", type=str, required=True)
+    parser.add_argument("--csv", "-c", type=str, required=True)
     args = parser.parse_args()
-    if args is None:
-        print("\n To launch the code you should stick to the next format:")
-        print("python3 xmltocsv.py <xml_filename> <csv_filename>")
     main(args.file[0], args.file[1])
