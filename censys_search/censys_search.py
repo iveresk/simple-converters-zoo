@@ -9,7 +9,7 @@ def main(query, pages):
     for page in h.search(query, per_page=100, pages=pages):
         ips = re.findall(r'[0-9]+(?:\.[0-9]+){3}', str(page))
         for ip in ips:
-            output_file.write(str(ip))
+            output_file.write(str(ip)+"\n")
 
 
 if __name__ == '__main__':
