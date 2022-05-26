@@ -32,7 +32,7 @@ fi
 # Attacking Target
 if [ -e "$IP" ];then
 	while read LINE; do
-		echo "Making nmap -p $PORT $IP";
+		echo "Making nmap -p $PORT $LINE";
 		nmap -p $PORT $IP | grep -E -o "([0-9]{1,3}[\.]){3}[0-9]{1,3}"
 	done <$IP	
 else
