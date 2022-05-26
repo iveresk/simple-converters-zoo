@@ -11,7 +11,7 @@ fi
 
 # Small standart how-to.
 if [ -z "$REGIME" ] || [ "$REGIME" == "-h" ] || [ $REGIME == "--help" ];then
-	echo "-------------------Welcome-to-big-nmap-script-by-1vere$k---------------+";
+	echo "-------------------Welcome-to-big-nmap-script-by-1veresk---------------+";
 	echo "+----------------------------------------------------------------------+";
 	echo "+-------------------For-The-Help---------------------------------------+";
 	echo "Example#1: ./nmap-search-volume.sh -h----------------------------------+";
@@ -31,11 +31,8 @@ fi
 
 # Attacking Target
 if [ -e "$IP" ];then
-	while read LINE; do
-		echo "Making nmap -p $PORT $LINE";
-		nmap -p $PORT $IP | grep -E -o "([0-9]{1,3}[\.]){3}[0-9]{1,3}"
-	done <$IP	
+	nmap -p $PORT -iL $IP | grep -E -o "([0-9]{1,3}[\.]){3}[0-9]{1,3}"
+fi
 else
-	echo "Making nmap -p $PORT $IP";
 	nmap -p $PORT $IP | grep -E -o "([0-9]{1,3}[\.]){3}[0-9]{1,3}"
 fi
