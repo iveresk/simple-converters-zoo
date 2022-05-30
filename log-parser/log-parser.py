@@ -9,11 +9,12 @@ def main(ftarget, foutput):
     input = tfile.readlines()
 
     for _, line in enumerate(input):
-        global_lines += 1
         if "patch" in line:
             protected_ftargets += 1
+            global_lines += 1
         if "dropped" in line:
             dropped_ftargets += 1
+            global_lines += 1
 
     percentage = (dropped_ftargets / global_lines) * 100
 
