@@ -11,15 +11,15 @@ fi
 
 # Small standart how-to.
 if [ -z "$REGIME" ] || [ "$REGIME" == "-h" ] || [ $REGIME == "--help" ];then
-	echo "-------------------Welcome-to-big-nmap-script-by-1veresk---------------+";
+	echo "-----------------Welcome-to-nmap-iis-searcher-by-1veresk---------------+";
 	echo "+----------------------------------------------------------------------+";
 	echo "+-------------------For-The-Help---------------------------------------+";
-	echo "Example#1: ./nmap-search-volume.sh -h----------------------------------+";
-	echo "Example#2: ./nmap-search-volume.sh --help------------------------------+";
+	echo "Example#1: ./nmap-iis-searcher.sh -h-----------------------------------+";
+	echo "Example#2: ./nmap-iis-searcher.sh --help-------------------------------+";
 	echo "+-------------------For-The-URL-Check----------------------------------+";
-	echo "Example#1: ./nmap-search-volume.sh -u <IP> <PORT> [Default PORT = 80--]+";
+	echo "Example#1: ./nmap-iis-searcher.sh -u <IP> <PORT> [Default PORT = 80---]+";
 	echo "+-------------------For-The-File-Check---------------------------------+";
-	echo "Example#1: ./nmap-search-volume.sh -f <FILENAME>-----------------------+";
+	echo "Example#1: ./nmap-iis-searcher.sh -f <FILENAME>------------------------+";
 	echo "+----------------------------------------------------------------------+";
 	exit 1;
 fi
@@ -29,9 +29,11 @@ if [ -z "$PORT" ]; then
 	PORT=80;
 fi
 
-# Attacking Target
+# Scanning Target
 if [ -e "$IP" ];then
-	nmap -p $PORT -iL $IP | grep -E -o "([0-9]{1,3}[\.]){3}[0-9]{1,3}"
+	nmap -T5 -p $PORT -iL $IP --script http-grep --script-args='match="IIS"' > "output.txt"
 else
-	nmap -p $PORT $IP | grep -E -o "([0-9]{1,3}[\.]){3}[0-9]{1,3}"
+	nmap -T5 -p $PORT $IP --script http-grep --script-args='match="IIS"' > "output.txt"
 fi
+
+cat output.txt | egrep -o "\(1\) http://[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" | egrep -o "([0-9]{1,3}\.){3}[0-9]{1,3}" > "targets.txt"
