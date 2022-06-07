@@ -11,7 +11,7 @@ if [ -z "$IP" ];then
 fi
 
 if [ -z "$SEARCH" ];then
-        SEARCH="IIS"
+        SEARCH=IIS
 fi
 
 # Small standart how-to.
@@ -41,6 +41,4 @@ else
 	nmap -T5 -p $PORT $IP --script http-grep --script-args match=$SEARCH > "nmap_output.txt"
 fi
 
-cat nmap_output.txt | egrep -o "\(1\) http://[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" | egrep -o "([0-9]{1,3}\.){3}[0-9]{1,3}" > "targets.txt"
-cat nmap_output.txt | egrep -o "^.*http://.*" | sed 's/.*\/\///' | awk -F'/' '{print $1}' > "targets2.txt"
-egrep -B 8 $SEARCH nmap_output.txt | egrep -o "([0-9]{1,3}\.){3}[0-9]{1,3}" > targets_full.txt
+egrep -B 8 $SEARCH nmap_output.txt | egrep -o "([0-9]{1,3}\.){3}[0-9]{1,3}" | awk 'NR==1{print $1}' > targets_full.txt
