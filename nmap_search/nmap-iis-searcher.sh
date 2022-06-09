@@ -43,5 +43,5 @@ fi
 
 cat nmap_output.txt | egrep -o --text "\(1\) http://[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" | egrep -o --text "([0-9]{1,3}\.){3}[0-9]{1,3}" > "targets.txt"
 cat nmap_output.txt | egrep -o --text "^.*http://.*" | sed 's/.*\/\///' | awk -F'/' '{print $1}' > "targets2.txt"
-egrep -B 8 $SEARCH nmap_output.txt | egrep -o --text "([0-9]{1,3}\.){3}[0-9]{1,3}" > targets_full.txt
+egrep -B 8 --text $SEARCH nmap_output.txt | egrep -o --text "([0-9]{1,3}\.){3}[0-9]{1,3}" > targets_full.txt
 awk '!seen[$0]++' targets_full.txt > final.txt
