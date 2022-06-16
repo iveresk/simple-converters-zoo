@@ -7,9 +7,6 @@ import time
 def main(target):
     sheet_name = "експеримент з таблицею"
     wks_name = "Лист1"
-    center_row = 0
-    center_col = 0
-    cell_found = False
     start_time = time.localtime()
     try:
         sa = gspread.service_account(filename="service-account.json")
@@ -24,6 +21,9 @@ def main(target):
     wks = sh.worksheet(wks_name)
     while True:
         if start_time.tm_hour == 5 and start_time.tm_min == 55:
+            center_row = 0
+            center_col = 0
+            cell_found = False
             print(f'GSheetClicker is Started! at {start_time.tm_hour}:{start_time.tm_min}')
             for col in range(10):
                 if col == 0:
