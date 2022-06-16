@@ -1,6 +1,0 @@
-
-Final Log Report: 
-Total count for the attacked ftargets is: 13000
-Dropped ftargets count is: 9811
-ftargets, that are protected for the exploit: 3189
-Dropped percentage is: 75.46923076923076%
