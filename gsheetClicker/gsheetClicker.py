@@ -11,7 +11,6 @@ def main(target):
     center_col = 0
     cell_found = False
     start_time = time.localtime()
-    print(f'GSheetClicker is Started! at {start_time.tm_hour}:{start_time.tm_min}')
     try:
         sa = gspread.service_account(filename="service-account.json")
     except:
@@ -25,6 +24,7 @@ def main(target):
     wks = sh.worksheet(wks_name)
     while True:
         if start_time.tm_hour == 5 and start_time.tm_min == 55:
+            print(f'GSheetClicker is Started! at {start_time.tm_hour}:{start_time.tm_min}')
             for col in range(10):
                 if col == 0:
                     continue
@@ -41,13 +41,15 @@ def main(target):
                 if cell_found:
                     break
             if center_col == 0 or center_row == 0:
-                print("Your cell haven't been found! Check your file Structure!")
+                print("Your cell haven't been found! Check your file Structure!\n")
                 exit(0)
             center_row = center_row + 2
             for i in range(29):
                 if i < center_row:
                     continue
                 wks.update_cell(i, center_col, "✅")
+                print(f'Check was made into cell({center_row},{center_col}) at {start_time.tm_hour}:{start_time.tm_min}')
+                print("\n Sleeping for 60 minutes")
                 time.sleep(3600)
         else:
             continue
