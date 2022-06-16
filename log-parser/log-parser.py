@@ -12,7 +12,7 @@ def main(ftarget, foutput):
         if "patch" in line:
             protected_ftargets += 1
             global_lines += 1
-        if "dropped" in line:
+        if "dropped down by the exploit" in line:
             dropped_ftargets += 1
             global_lines += 1
 
