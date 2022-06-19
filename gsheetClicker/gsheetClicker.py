@@ -28,7 +28,7 @@ def main(target):
             center_row = 0
             center_col = 0
             cell_found = False
-            print(f'New ay for GSheetClicker is Started! at {start_time.tm_hour}:{start_time.tm_min}')
+            print(f'New day for GSheetClicker is Started! at {start_time.tm_hour}:{start_time.tm_min}')
             for col in range(10):
                 # missing unsupported cells
                 if col == 0:
@@ -65,8 +65,7 @@ def main(target):
                 print("\n Sleeping for 60 minutes")
                 time.sleep(3600)
         else:
-            continue
-        time.sleep(60)
+            time.sleep(60)
 
 
 if __name__ == '__main__':
