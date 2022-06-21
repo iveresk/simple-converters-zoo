@@ -6,8 +6,8 @@ import time
 
 def main(target):
     # setuping a set of parameters
-    sheet_name = "експеримент з таблицею"
-    wks_name = "Лист1"
+    sheet_name = "<Google Sheet's name>"
+    wks_name = "<Page Name>"
     # connecting to the Google Sheet
     try:
         sa = gspread.service_account(filename="service-account.json")
@@ -61,7 +61,9 @@ def main(target):
                 if i < center_row:
                     continue
                 wks.update_cell(i, center_col, "✅")
-                print(f'Check was made into cell({center_row},{center_col}) at {cell_time.tm_hour}:{cell_time.tm_min}')
+                print(f'Check was made into cell({i},{center_col}) at {cell_time.tm_hour+3}:{cell_time.tm_min}')
+                if i == 28:
+                    continue
                 print("\n Sleeping for 60 minutes")
                 time.sleep(3600)
         else:
