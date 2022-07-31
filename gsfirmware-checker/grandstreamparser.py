@@ -3,24 +3,98 @@ import argparse
 import os
 
 
-def printtable(firmware):
-    if len(firmware) <= 3:
+def printtable(firmware, regime):
+    if len(firmware) < 3:
         print(firmware)
         return
-    for i in range(1, len(firmware)-1, 3):
-        print("-"*60)
-        print("| " + firmware[i-1] + " | " + firmware[i] + " | " + firmware[i+1] + " |")
+    if regime == 1:
+        for i in range(1, len(firmware)-1, 3):
+            print("-"*30 + "-Table-of-versions-" + "-"*30)
+            print("| " + firmware[i-1] + " | " + firmware[i] + " | " + firmware[i+1] + " |")
+            print("-" * 70)
+    if regime == 2:
+        for i in range(1, len(firmware)-1, 4):
+            print("-"*20 + "-Table-of-CVEs-" + "-"*20)
+            print("| " + firmware[i-1] + " | " + firmware[i] + " | ")
+            print("-" * 50)
+            print("| " + firmware[i+1] + " |" + firmware[i+2] + " |")
+            print("-" * 50)
+
+
+def calculateversions(firmware, basecve):
+    res = []
+    for i in range(0, len(firmware), 2):
+        firmwarespace = firmware[i].split(" ")
+        for j in range(0, len(basecve), 2):
+            basespace = basecve[j].split(";")
+            if firmwarespace[0] in basespace[1]:
+                if firmware[i+1] <= basecve[j+1]:
+                    res.append(firmware[i])
+                    res.append(basespace[0])
+    return res
+
+
+def versiontoint(totransform):
+    res = ""
+    temp = 0
+    if "1." in totransform:
+        try:
+            index1 = totransform.split("1.")
+            index2 = "1." + index1[1]
+            index = index2.split(".")
+            for i in range(0, len(index)):
+                if index[0] == "1":
+                    r = index[i].split(" ")
+                    if len(r) > 1:
+                        res = res + r[0]
+                        int(res)
+                        temp = int(res)
+                        continue
+                    res = res + index[i]
+                    int(res)
+                    temp = int(res)
+                if index[1] == "1":
+                    if len(r) > 1:
+                        res = res + r[0]
+                        int(res)
+                        temp = int(res)
+                        continue
+                    res = res + index[i]
+                    int(res)
+                    temp = int(res)
+        except:
+            return temp
+    return temp
+
+
+def transformversions(totransform):
+    report = []
+    lentamente = len(totransform)
+    if lentamente <= 1:
+        temp = versiontoint(totransform)
+        totransform.append(temp)
+    else:
+        for i, row in enumerate(totransform):
+            if i >= lentamente:
+                break
+            if "1." in row:
+                temp = versiontoint(row)
+                report.append(row)
+                report.append(temp)
+    return report
 
 
 def checkfirmware(etalon, scan):
     report = []
     for i in range(0, len(etalon)):
         for j in range(1, len(scan)):
-            if scan[j] in etalon[i] or etalon[i] in scan[j]:
-                report.append(scan[j-1])
-                report.append(scan[j])
-                version = etalon[i+1].split(" ")
-                report.append(version[0])
+            index = scan[j].split(" ")
+            for k in range(0, len(index)):
+                if index[k] in etalon[i] or etalon[i] in index[k]:
+                    report.append(scan[j-1])
+                    report.append(scan[j])
+                    version = etalon[i+1].split(";")
+                    report.append(version[1])
     return report
 
 
@@ -43,11 +117,8 @@ def csvparser(regime, csvfile):
                     res.append(col)
                 if "HT" in col or "GXW" in col or "GSC" in col or "GDS" in col or "BT" in col or "GXP" in col:
                     res.append(col)
-                if "PBX":
+                if "PBX" in col or "TP-Link" in col:
                     res.append(col)
-                if "1." in col:
-                    index = col.split(" ")
-                    res.append(index[0])
 
     else:
         for row in rows:
@@ -72,10 +143,15 @@ def main(gcsvfile, checkip, system):
     scan = csvparser("scan", "scan1.csv")
     # TODO checking firmware
     firmware = checkfirmware(etalon, scan)
-    printtable(firmware)
-    # TODO JSON CVE Base
-
-    # TODO reportcsv(etalon, scan, cvejson)
+    printtable(firmware, 1)
+    # TODO CSV CVE Base
+    csvbase = csvparser("cvebase", "gscvebase.csv")
+    # TODO transform versions
+    firmware_transformed = transformversions(firmware)
+    base_transformed = transformversions(csvbase)
+    # TODO Calculate versions
+    report = calculateversions(firmware_transformed, base_transformed)
+    printtable(report, 2)
 
 
 if __name__ == '__main__':

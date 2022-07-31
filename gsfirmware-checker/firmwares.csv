@@ -1,41 +1,41 @@
-PBX,1.0.9.6 Release Notes,firmware.grandstream.com,
-GWN7000,1.0.9.6 Release Notes,firmware.grandstream.com,
-GWN7600 ,1.0.9.13 Release Notes,,
-GWN7600LR ,1.0.9.13  Release Notes,,
-GWN7610,1.0.9.13  Release Notes,,
-PBX,1.0.8.6 Release Notes,firmware.grandstream.com,
-GWN7630,1.0.9.12  Release Notes,,
-GWN7600/7610,1.0.9.4 deployment,,
-GWN7600,1.0.21.7 Release Notes,firmware.grandstream.com,
-GWN7600LR,1.0.21.7 Release Notes,,
-GWN7602,1.0.19.36 Release Notes,,
-GWN7605,1.0.23.7 Release Notes,,
-GWN7605LR,1.0.23.7 Release Notes,,
-GWN7610,1.0.21.7 Release Notes,,
-GWN7615,1.0.23.7 Release Notes,,
-GWN7625,1.0.23.7 Release Notes,,
-GWN7630,1.0.23.7 Release Notes,,
-GWN7630LR,1.0.23.7 Release Notes,,
-GWN7660,1.0.21.16 Release Notes,,
-GWN7660LR,1.0.21.16 Release Notes,,
-GWN7664,1.0.21.16 Release Notes,,
-GWN7664LR,1.0.21.16,,
-UCM6510,1.0.20.44  Release Notes,GSWave_Web 1.0.20.46  Release Notes,1.0.20.47BETA
-UCM6301,1.0.15.13 Release Notes,,
-UCM6302,1.0.15.13 Release Notes,,
-UCM6304,1.0.15.13 Release Notes,,
-UCM6308,1.0.15.13 Release Notes,,
-UCM6300A,1.0.15.13 Release Notes,,
-UCM6302A,1.0.15.13 Release Notes,,
-UCM6304A,1.0.15.13 Release Notes,,
-UCM6308A,1.0.15.13 Release Notes,,
-UCM6202,1.0.20.44  Release Notes,,
-UCM6204,1.0.20.44  Release Notes,,
-UCM6208,1.0.20.44  Release Notes,,
+PBX;1.0.9.6 Release Notes;firmware.grandstream.com;
+GWN7000;1.0.9.6 Release Notes;firmware.grandstream.com;
+GWN7600;1.0.9.13 Release Notes;;
+GWN7600LR;1.0.9.13  Release Notes;;
+GWN7610;1.0.9.13  Release Notes;;
+TP-Link;1.0.8.6 Release Notes;firmware.grandstream.com;
+GWN7630;1.0.9.12  Release Notes;;
+GWN7600/7610;1.0.9.4 deployment;;
+GWN7600;1.0.21.7 Release Notes;firmware.grandstream.com;
+GWN7600LR;1.0.21.7 Release Notes;;
+GWN7602;1.0.19.36 Release Notes;;
+GWN7605;1.0.23.7 Release Notes;;
+GWN7605LR;1.0.23.7 Release Notes;;
+GWN7610;1.0.21.7 Release Notes;;
+GWN7615;1.0.23.7 Release Notes;;
+GWN7625;1.0.23.7 Release Notes;;
+GWN7630;1.0.23.7 Release Notes;;
+GWN7630LR;1.0.23.7 Release Notes;;
+GWN7660;1.0.21.16 Release Notes;;
+GWN7660LR;1.0.21.16 Release Notes;;
+GWN7664;1.0.21.16 Release Notes;;
+GWN7664LR;1.0.21.16;;
+UCM6510;1.0.20.44  Release Notes;GSWave_Web 1.0.20.46  Release Notes;1.0.20.47BETA
+UCM6301;1.0.15.13 Release Notes;;
+UCM6302;1.0.15.13 Release Notes;;
+UCM6304;1.0.15.13 Release Notes;;
+UCM6308;1.0.15.13 Release Notes;;
+UCM6300A;1.0.15.13 Release Notes;;
+UCM6302A;1.0.15.13 Release Notes;;
+UCM6304A;1.0.15.13 Release Notes;;
+UCM6308A;1.0.15.13 Release Notes;;
+UCM6202;1.0.20.44  Release Notes;;
+UCM6204;1.0.20.44  Release Notes;;
+UCM6208;1.0.20.44  Release Notes;;
 "GRP2601/P
 GRP2602/P/W
 GRP2603/P
-GRP2604/P",1.0.3.63 Release Notes,firmware.grandstream.com,1.0.3.67BETA
+GRP2604/P";1.0.3.63 Release Notes;firmware.grandstream.com;1.0.3.67BETA
 "GRP2612/P/W
 GRP2613
 GRP2614
@@ -43,154 +43,154 @@ GRP2615
 GRP2616
 GRP2624
 GRP2634
-GRP2670",1.0.7.33 Release Notes,firmware.grandstream.com,1.0.9.22BETA
+GRP2670";1.0.7.33 Release Notes;firmware.grandstream.com;1.0.9.22BETA
 "GXP1610/1615
 GXP1620/1625
 GXP1628
-GXP1630",1.0.7.27 Release Notes,firmware.grandstream.com,
+GXP1630";1.0.7.27 Release Notes;firmware.grandstream.com;
 "GXP1780/1782
-GXP1760W",1.0.1.123 Release Notes,firmware.grandstream.com,
-GXP2130,1.0.11.57 Release Notes,"For HTTP upgrading, please use this path:
+GXP1760W";1.0.1.123 Release Notes;firmware.grandstream.com;
+GXP2130;1.0.11.57 Release Notes;"For HTTP upgrading, please use this path:
 firmware.grandstream.com/gxp21xx/1_0_11_57 
 Warning:
 For certain GXP213x models on firmware 1.0.11.40+, downgrading to lower firmware may brick the device. Please do NOT attempt to downgrade the following GXP213x after upgrading to 1.0.11.40+: 
 GXP2130 hardware version 4.0A
-GXP2135 hardware version 3.0A and 3.1A",
-GXP2135,1.0.11.57 Release Notes,,
-GXP2140,1.0.11.57 Release Notes,,
-GXP2160,1.0.11.57 Release Notes,,
-GXP2170,1.0.11.57 Release Notes,,
+GXP2135 hardware version 3.0A and 3.1A";
+GXP2135;1.0.11.57 Release Notes;;
+GXP2140;1.0.11.57 Release Notes;;
+GXP2160;1.0.11.57 Release Notes;;
+GXP2170;1.0.11.57 Release Notes;;
 "WP810
 WP822
-WP825",1.0.11.8 Release Notes,firmware.grandstream.com,1.0.11.16BETA
-WP820,1.0.7.43 Release Notes,firmware.grandstream.com,1.0.7.50BETA
+WP825";1.0.11.8 Release Notes;firmware.grandstream.com;1.0.11.16BETA
+WP820;1.0.7.43 Release Notes;firmware.grandstream.com;1.0.7.50BETA
 "DP752
 DP750
-DP760",1.0.17.4  Release Notes,firmware.grandstream.com,
-IPVT10,1.0.6.13 Release Notes,,
+DP760";1.0.17.4  Release Notes;firmware.grandstream.com;
+IPVT10;1.0.6.13 Release Notes;;
 "GVC3200
-GVC3202","1.0.3.69 Release Notes
+GVC3202";"1.0.3.69 Release Notes
 Important Upgrade Note:
-GVC320x firmware 1.0.3.62 or higher version is required to be used with IPVideoTalk service.",firmware.grandstream.com,
-GVC3210,"1.0.1.76 Release Notes
+GVC320x firmware 1.0.3.62 or higher version is required to be used with IPVideoTalk service.";firmware.grandstream.com;
+GVC3210;"1.0.1.76 Release Notes
 Important Upgrade Note: 
-GVC3210 firmware 1.0.1.51+ is required to be used with IPVideoTalk service.",firmware.grandstream.com,
-GVC3212,1.0.1.6,firmware.grandstream.com,
-GVC3220,1.0.1.37  Release Notes,firmware.grandstream.com,
-GMD1208,1.0.1.37  Release Notes,,
-GAC2500,1.0.3.42 Release Notes,firmware.grandstream.com,
-GXV3380,1.0.3.29 Release Notes,firmware.grandstream.com,
-GXV3370,1.0.3.38 Release Notes,firmware.grandstream.com,
-GXV3350,1.0.3.40 Release Notes,firmware.grandstream.com,
-GBX20,1.0.1.3,firmware.grandstream.com,
-HT801,1.0.41.2 Release Notes,firmware.grandstream.com,
-HT802,1.0.41.2 Release Notes,firmware.grandstream.com,
-HT812,1.0.41.2 Release Notes,firmware.grandstream.com,
-HT813,1.0.13.3 Release Notes,firmware.grandstream.com,
-HT814,1.0.41.2 Release Notes,firmware.grandstream.com,
-HT818,1.0.41.2 Release Notes,firmware.grandstream.com,
-GXW410x,1.4.1.5 Release Notes,firmware.grandstream.com,
-GXW4216 V1,1.0.23.2 Release Notes,firmware.grandstream.com,
-GXW4224 V1,1.0.23.2 Release Notes,firmware.grandstream.com,
-GXW4232 V1,1.0.23.2 Release Notes,firmware.grandstream.com,
-GXW4248 V1,1.0.23.2 Release Notes,firmware.grandstream.com,
-GXW4216 V2NEW,"1.0.3.4
+GVC3210 firmware 1.0.1.51+ is required to be used with IPVideoTalk service.";firmware.grandstream.com;
+GVC3212;1.0.1.6;firmware.grandstream.com;
+GVC3220;1.0.1.37  Release Notes;firmware.grandstream.com;
+1208,00 GMD;1.0.1.37  Release Notes;;
+GAC2500;1.0.3.42 Release Notes;firmware.grandstream.com;
+GXV3380;1.0.3.29 Release Notes;firmware.grandstream.com;
+GXV3370;1.0.3.38 Release Notes;firmware.grandstream.com;
+GXV3350;1.0.3.40 Release Notes;firmware.grandstream.com;
+GBX20;1.0.1.3;firmware.grandstream.com;
+HT801;1.0.41.2 Release Notes;firmware.grandstream.com;
+HT802;1.0.41.2 Release Notes;firmware.grandstream.com;
+HT812;1.0.41.2 Release Notes;firmware.grandstream.com;
+HT813;1.0.13.3 Release Notes;firmware.grandstream.com;
+HT814;1.0.41.2 Release Notes;firmware.grandstream.com;
+HT818;1.0.41.2 Release Notes;firmware.grandstream.com;
+GXW410x;1.4.1.5 Release Notes;firmware.grandstream.com;
+GXW4216 V1;1.0.23.2 Release Notes;firmware.grandstream.com;
+GXW4224 V1;1.0.23.2 Release Notes;firmware.grandstream.com;
+GXW4232 V1;1.0.23.2 Release Notes;firmware.grandstream.com;
+GXW4248 V1;1.0.23.2 Release Notes;firmware.grandstream.com;
+GXW4216 V2NEW;"1.0.3.4
 - For device on firmware 1.0.1.4 or older, use file gxw4216fw.v2.bin to upgrade.
-- For device on firmware 1.0.3.1 or higher, use file gxw4216v2fw.bin to upgrade.",,
-GXW4224 V2NEW,"1.0.3.4
+- For device on firmware 1.0.3.1 or higher, use file gxw4216v2fw.bin to upgrade.";;
+GXW4224 V2NEW;"1.0.3.4
 - For device on firmware 1.0.1.4 or older, use file gxw4224fw.v2.bin to upgrade.
-- For device on firmware 1.0.3.1 or higher, use file gxw4224v2fw.bin to upgrade.",,
-GXW4232 V2NEW,"1.0.3.4
+- For device on firmware 1.0.3.1 or higher, use file gxw4224v2fw.bin to upgrade.";;
+GXW4232 V2NEW;"1.0.3.4
 - For device on firmware 1.0.1.4 or older, use file gxw4232fw.v2.bin to upgrade.
-- For device on firmware 1.0.3.1 or higher, use file gxw4232v2fw.bin to upgrade.",,
-GXW4248 V2NEW,"1.0.3.4
+- For device on firmware 1.0.3.1 or higher, use file gxw4232v2fw.bin to upgrade.";;
+GXW4248 V2NEW;"1.0.3.4
 - For device on firmware 1.0.1.4 or older, use file gxw4248fw.v2.bin to upgrade.
-- For device on firmware 1.0.3.1 or higher, use file gxw4248v2fw.bin to upgrade.",,
+- For device on firmware 1.0.3.1 or higher, use file gxw4248v2fw.bin to upgrade.";;
 "GXW4501
 GXW4502
-GXW4504",1.0.1.7 Release Notes,firmware.grandstream.com,
-GSC3570,1.0.5.21 Release Notes,firmware.grandstream.com,
-GSC3505,1.0.1.18 Release Notes,firmware.grandstream.com,
-GSC3510,1.0.1.18 Release Notes,firmware.grandstream.com,
-GDS3702,1.0.3.11   Release Notes,firmware.grandstream.com,
-GDS3705,1.0.3.11 Release Notes,firmware.grandstream.com,
-GDS3710,1.0.11.18 Release Notes,firmware.grandstream.com,
-GSC3620,1.0.7.5  Release Notes,firmware.grandstream.com,
-GSC3610/GSC3615,1.0.3.8 Release Notes,firmware.grandstream.com,
-GXV3500,1.0.3.14 Release Notes,firmware.grandstream.com,1.0.3.17BETA
-BT101,1.1.0.26,,
-BT102,1.1.0.26,,
-HT286 (Rev. 2.0),1.0.7.19,,
-HT286 (Rev. 3.0),1.1.0.45,,
-HT386,1.0.3.96,,
-HT488,1.0.3.96,,
-HT496,1.0.3.96,,
-HT486,1.1.0.45,,
-GXW4024,1.0.12.4,,
-BT200/201,1.2.5.3,,
-GXP2010,1.2.5.3,,
-GXP2020,,,
+GXW4504";1.0.1.7 Release Notes;firmware.grandstream.com;
+GSC3570;1.0.5.21 Release Notes;firmware.grandstream.com;
+GSC3505;1.0.1.18 Release Notes;firmware.grandstream.com;
+GSC3510;1.0.1.18 Release Notes;firmware.grandstream.com;
+GDS3702;1.0.3.11   Release Notes;firmware.grandstream.com;
+GDS3705;1.0.3.11 Release Notes;firmware.grandstream.com;
+GDS3710;1.0.11.18 Release Notes;firmware.grandstream.com;
+GSC3620;1.0.7.5  Release Notes;firmware.grandstream.com;
+GSC3610/GSC3615;1.0.3.8 Release Notes;firmware.grandstream.com;
+GXV3500;1.0.3.14 Release Notes;firmware.grandstream.com;1.0.3.17BETA
+BT101;1.1.0.26;;
+BT102;1.1.0.26;;
+HT286 (Rev. 2.0);1.0.7.19;;
+HT286 (Rev. 3.0);1.1.0.45;;
+HT386;1.0.3.96;;
+HT488;1.0.3.96;;
+HT496;1.0.3.96;;
+HT486;1.1.0.45;;
+GXW4024;1.0.12.4;;
+BT200/201;1.2.5.3;;
+GXP2010;1.2.5.3;;
+GXP2020;;;
 "GXE5024
-GXE5028",1.0.1.63,"1.0.1.63
+GXE5028";1.0.1.63;"1.0.1.63
 Special Notes
 Special Information for 1.0.1.63
 Special Upgrade Instructions for
 firmware 1.0.1.24 and below
-System Prompt Information",
-GXP280,1.2.5.3,,
-GXP285,1.2.5.3,,
-GXP1200,1.2.5.3,,
-GXP2000,1.2.5.3,,
-GXP2100,1.0.8.6,,
-GXP2110,1.0.8.6,,
-GXP2120,1.0.8.6,,
-GXP2124,1.0.8.6,,
-GXP1760,1.0.1.119 Release Notes,,
-GXP2200,1.0.3.27,,
-GXV3140,1.0.7.80,,
-GXV3175,1.0.3.76,,
-GXV3175v2,1.0.1.55 Release Notes,,
-GXV3240,1.0.3.227 Release Notes,,
-GXV3275,1.0.3.227 Release Notes,,
-GXV300x,1.2.3.7,,
-GXV300x Language Pack,,,
-GXV300x Ring Tone Pack,,,
-GXV3501/GXV3504,1.0.4.38,,
-GXV3601,1.0.4.38,,
-GXV3601_HD,1.0.4.56,,
-GXV3601_LL,1.0.4.38,,
-GXV3610_HD/FHD,1.0.3.23 Release Notes,,
-GXV3611_IR_HD,1.0.3.23 Release Notes,,
-GXV3611_LL,1.0.4.38,,
-GXV3611_HD,1.0.4.56,,
+System Prompt Information";
+GXP280;1.2.5.3;;
+GXP285;1.2.5.3;;
+GXP1200;1.2.5.3;;
+GXP2000;1.2.5.3;;
+GXP2100;1.0.8.6;;
+GXP2110;1.0.8.6;;
+GXP2120;1.0.8.6;;
+GXP2124;1.0.8.6;;
+GXP1760;1.0.1.119 Release Notes;;
+GXP2200;1.0.3.27;;
+GXV3140;1.0.7.80;;
+GXV3175;1.0.3.76;;
+GXV3175v2;1.0.1.55 Release Notes;;
+GXV3240;1.0.3.227 Release Notes;;
+GXV3275;1.0.3.227 Release Notes;;
+GXV300x;1.2.3.7;;
+GXV300x Language Pack;;;
+GXV300x Ring Tone Pack;;;
+GXV3501/GXV3504;1.0.4.38;;
+GXV3601;1.0.4.38;;
+GXV3601_HD;1.0.4.56;;
+GXV3601_LL;1.0.4.38;;
+GXV3610_HD/FHD;1.0.3.23 Release Notes;;
+GXV3611_IR_HD;1.0.3.23 Release Notes;;
+GXV3611_LL;1.0.4.38;;
+GXV3611_HD;1.0.4.56;;
 "GXV3615
-(PoE or Wi-Fi)",1.0.4.38,,
-GXV3615WP_HD,1.0.1.96 Release Notes,,
-GXV3651_FHD,1.0.1.93,,
-GVR3550,1.0.1.31 Release Notes,,
-GVR3552,1.0.1.31 Release Notes,,
-GXV3662_HD,1.0.1.93 Release Notes,,
-GXV3662_FHD,1.0.1.93 Release Notes,,
-GXV3672_HD,1.0.1.93 Release Notes,,
-GXV3672_FHD,1.0.1.93 Release Notes,,
-GXV3672_HD_36/FHD_36,1.0.3.23 Release Notes,,
-GXV3674_HD/FHD_VF,1.0.3.23 Release Notes,,
-DP71x,1.0.0.33 Release Notes,,
-GXP1100,1.0.8.6 Release Notes,,
-GXP1105,1.0.8.6 Release Notes,,
-GXP1160,1.0.8.9 Release Notes,,
-GXP1165,1.0.8.9 Release Notes,,
-GXP1400,1.0.8.9 Release Notes,,
-GXP1405,1.0.8.9 Release Notes,,
-GXP1450,1.0.8.9 Release Notes,,
-GXW4004,1.0.16.2 Release Notes,HTTP Upgrade Server: firmware.grandstream.com,
-GXW4008,1.0.16.2 Release Notes,HTTP Upgrade Server: firmware.grandstream.com,
-HT502,1.0.16.2 Release Notes,HTTP Upgrade Server: firmware.grandstream.com,
-HT503,1.0.16.3 Release Notes,HTTP Upgrade Server: firmware.grandstream.com,
-HT701,1.0.10.3  Release Notes,HTTP Upgrade Server: firmware.grandstream.com,
-HT702,1.0.10.3  Release Notes,HTTP Upgrade Server: firmware.grandstream.com,
-HT704,1.0.10.3  Release Notes,HTTP Upgrade Server: firmware.grandstream.com,
-UCM6102,1.0.18.18 Release Notes,,
-UCM6104,1.0.18.18 Release Notes,,
-UCM6108,1.0.18.18 Release Notes,,
-UCM6116,1.0.18.18 Release Notes,,
+(PoE or Wi-Fi)";1.0.4.38;;
+GXV3615WP_HD;1.0.1.96 Release Notes;;
+GXV3651_FHD;1.0.1.93;;
+GVR3550;1.0.1.31 Release Notes;;
+GVR3552;1.0.1.31 Release Notes;;
+GXV3662_HD;1.0.1.93 Release Notes;;
+GXV3662_FHD;1.0.1.93 Release Notes;;
+GXV3672_HD;1.0.1.93 Release Notes;;
+GXV3672_FHD;1.0.1.93 Release Notes;;
+GXV3672_HD_36/FHD_36;1.0.3.23 Release Notes;;
+GXV3674_HD/FHD_VF;1.0.3.23 Release Notes;;
+DP71x;1.0.0.33 Release Notes;;
+GXP1100;1.0.8.6 Release Notes;;
+GXP1105;1.0.8.6 Release Notes;;
+GXP1160;1.0.8.9 Release Notes;;
+GXP1165;1.0.8.9 Release Notes;;
+GXP1400;1.0.8.9 Release Notes;;
+GXP1405;1.0.8.9 Release Notes;;
+GXP1450;1.0.8.9 Release Notes;;
+GXW4004;1.0.16.2 Release Notes;HTTP Upgrade Server: firmware.grandstream.com;
+GXW4008;1.0.16.2 Release Notes;HTTP Upgrade Server: firmware.grandstream.com;
+HT502;1.0.16.2 Release Notes;HTTP Upgrade Server: firmware.grandstream.com;
+HT503;1.0.16.3 Release Notes;HTTP Upgrade Server: firmware.grandstream.com;
+HT701;1.0.10.3  Release Notes;HTTP Upgrade Server: firmware.grandstream.com;
+HT702;1.0.10.3  Release Notes;HTTP Upgrade Server: firmware.grandstream.com;
+HT704;1.0.10.3  Release Notes;HTTP Upgrade Server: firmware.grandstream.com;
+UCM6102;1.0.18.18 Release Notes;;
+UCM6104;1.0.18.18 Release Notes;;
+UCM6108;1.0.18.18 Release Notes;;
+UCM6116;1.0.18.18 Release Notes;;
