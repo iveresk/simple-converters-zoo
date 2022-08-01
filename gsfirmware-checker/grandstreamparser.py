@@ -95,6 +95,7 @@ def checkfirmware(etalon, scan):
                     report.append(scan[j])
                     version = etalon[i+1].split(";")
                     report.append(version[1])
+                    break
     return report
 
 
