@@ -229,7 +229,7 @@ if __name__ == '__main__':
         if args.output == "console" or args.output == "file":
             regime = args.output
         else:
-            print("-r or --regime parameter should be 'console' or 'file'")
+            print("-o or --output parameter should be 'console' or 'file'")
             exit(0)
 
     # checking if we are working with IP or file
