@@ -1,24 +1,36 @@
 import csv
 import argparse
 import os
+import time
+import random
 import requests
 
 
 def printtable(firmware, regime, output):
     if output == "console":
+        # quick report for non-standart cases
         if len(firmware) < 3:
             print(firmware)
             return
+        # report for the -Table-of-versions- compare
         if regime == "1":
             print("-"*33 + "-Table-of-versions-" + "-"*33)
             for i in range(1, len(firmware)-1, 3):
                 print("| " + firmware[i-1] + " | " + firmware[i] + " | " + firmware[i+1] + " |")
                 print("-" * 85)
+        # report for the -Table-of-CVEs- compare
         if regime == "2":
             print("-"*20 + "-Table-of-CVEs-" + "-"*20)
             for i in range(1, len(firmware)-1, 2):
                 print("| " + firmware[i-1] + " | " + firmware[i] + " | ")
                 print("-" * 50)
+        # report for the -Weak-Passwords-
+        if regime == "3":
+            print("-"*14 + "-Weak-Passwords-" + "-"*15)
+            for i in range(1, len(firmware)-1, 4):
+                print("| " + firmware[i-1] + " | " + firmware[i] + " | " + firmware[i+1] + " | " + firmware[i+2] + " |")
+                print("-" * 45)
+    # the same regimes but for file output
     elif output == "file":
         try:
             with open("output", "r") as f:
@@ -26,7 +38,6 @@ def printtable(firmware, regime, output):
         except:
             lines = []
         # adding scan results to the file
-
         try:
             with open("scan1.csv", "r") as sf:
                 slines = sf.readlines()
@@ -49,6 +60,11 @@ def printtable(firmware, regime, output):
             for i in range(1, len(firmware)-1, 2):
                 lines.append("| " + firmware[i-1] + " | " + firmware[i] + " | ")
                 lines.append("-" * 50)
+        if regime == "3":
+            lines.append("-"*20 + "-Weak-Passwords-" + "-"*20)
+            for i in range(1, len(firmware)-1, 4):
+                lines.append("| " + firmware[i-1] + " | " + firmware[i] + " | " + firmware[i+1] + " | " + firmware[i+2])
+                lines.append("-" * 60)
         try:
             with open("output", "w+") as f:
                 for line in lines:
@@ -129,7 +145,7 @@ def transformversions(totransform):
 
 def checkfirmware(etalon, scan):
     report = []
-    for i in range(0, len(etalon)-1, 2):
+    for i in range(0, len(etalon)-1):
         for j in range(0, len(scan)):
             index = scan[j].split(" ")
             for k in range(1, len(index)):
@@ -179,8 +195,68 @@ def csvparser(regime, csvfile):
     return res
 
 
+def parsevoips(scans):
+    res = []
+    bytefree = []
+    for i in range(0, len(scans)):
+        bytefree.append(scans[i].split("b'")[1])
+    for i in range(1, len(bytefree), 2):
+        res.append(bytefree[i].split(" ")[0])
+        res.append(bytefree[i-1].split(":")[0])
+    return res
+
+
+def getGSsession():
+    # Session should be randomly generated where the 10th symbol is 'e'
+    rand = ""
+    for i in range(0, 20):
+        if i == 9:
+            rand = rand + "e"
+            continue
+        rand = rand + str(random.randint(0, 9))
+    cookies = {'session-role': 'user', 'session-identity': rand}
+    return cookies
+
+
+def prepareGSheader(targetip):
+    url = "http://" + targetip + "/cgi-bin/dologin"
+    headers = {'Accept': '*/*', 'Accept-Encoding': 'gzip, deflate', 'Accept-Language': 'en-US,en;q=0.5', 'Cache-Control': 'max-age=0, no-cache', 'Connection': 'keep-alive', 'Content-Length': '26', 'Content-Type': 'application/x-www-form-urlencoded', 'Host': targetip, 'Origin': 'http://'+ targetip, 'Pragma': 'no-cache', 'Referer': 'http://'+ targetip, 'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101 Firefox/91.0'}
+    cookies = getGSsession()
+    return url, headers, cookies
+
+
+def checkdefaultpasswords(parsedvoips):
+    vulns = []
+    # default passwords for the Grandstreams
+    defaultpasses = {'Grandstream': ['admin', 'admin', 'user', '123']}
+    for i in range(0, len(parsedvoips), 2):
+        if "Grandstream" in parsedvoips[i]:
+            # requesting main params for the request
+            url, headers, cookies = prepareGSheader(parsedvoips[i+1])
+            for j in range(0, len(defaultpasses['Grandstream']), 2):
+                r = requests.post(url, data={'username': defaultpasses['Grandstream'][j], 'password': defaultpasses['Grandstream'][j+1]}, headers=headers, cookies=cookies)
+                try:
+                    # if we used all attempts we are sleeping for 5 mins and 1 sec and trying one more request
+                    if "locked" in r.json()['body']:
+                        time.sleep(301)
+                        r = requests.post(url, data={'username': defaultpasses['Grandstream'][j],
+                                                     'password': defaultpasses['Grandstream'][j + 1]}, headers=headers,
+                                          cookies=cookies)
+                    # if we've logged in - we are saving the username and password for the report
+                    if "wrong" not in r.json()['body']:
+                        vulns.append(parsedvoips[i])
+                        vulns.append(parsedvoips[i+1])
+                        vulns.append(defaultpasses['Grandstream'][j])
+                        vulns.append(defaultpasses['Grandstream'][j+1])
+                except:
+                    break
+                time.sleep(1)
+    return vulns
+
 def main(gcsvfile, checkip, system, output):
+    # parsing firmwares
     etalon = csvparser("etalon", gcsvfile)
+    # checking what system we received from the command line
     if system == "kali":
         os.system("svreport delete -t svmap -s scan1")
         cmd = "svmap -s scan1 " + checkip
@@ -189,11 +265,13 @@ def main(gcsvfile, checkip, system, output):
         os.system("sipvicious_svreport delete -t svmap -s scan1")
         cmd = "sipvicious_svmap -s scan1 " + checkip
         cmd1 = "sipvicious_svreport export -f csv -o scan1.csv -t svmap -s scan1"
+    # executing svmap scan and generating report with standard filename 'scan1.csv'
     os.system(cmd)
     os.system(cmd1)
     scan = csvparser("scan", "scan1.csv")
     # checking firmware
     firmware = checkfirmware(etalon, scan)
+    # if there is no device in our firmware base we are just finishing the flow
     if firmware == []:
         return
     printtable(firmware, "1", output)
@@ -206,8 +284,11 @@ def main(gcsvfile, checkip, system, output):
     report = calculateversions(firmware_transformed, base_transformed)
     if report != []:
         printtable(report, "2", output)
-    # checking for default passwords
-
+    # parsing VoIPs for pairs Model - IP
+    parsedvoips = parsevoips(scan)
+    vulneredips = checkdefaultpasswords(parsedvoips)
+    if vulneredips != []:
+        printtable(vulneredips, "3", output)
 
 
 if __name__ == '__main__':
@@ -229,7 +310,7 @@ if __name__ == '__main__':
         if args.output == "console" or args.output == "file":
             regime = args.output
         else:
-            print("-o or --output parameter should be 'console' or 'file'")
+            print("-r or --regime parameter should be 'console' or 'file'")
             exit(0)
 
     # checking if we are working with IP or file
