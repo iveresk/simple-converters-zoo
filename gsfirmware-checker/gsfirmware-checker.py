@@ -61,10 +61,10 @@ def printtable(firmware, regime, output):
                 lines.append("| " + firmware[i-1] + " | " + firmware[i] + " | ")
                 lines.append("-" * 50)
         if regime == "3":
-            lines.append("-"*20 + "-Weak-Passwords-" + "-"*20)
+            lines.append("-"*14 + "-Weak-Passwords-" + "-"*15)
             for i in range(1, len(firmware)-1, 4):
                 lines.append("| " + firmware[i-1] + " | " + firmware[i] + " | " + firmware[i+1] + " | " + firmware[i+2])
-                lines.append("-" * 60)
+                lines.append("-" * 45)
         try:
             with open("output", "w+") as f:
                 for line in lines:
