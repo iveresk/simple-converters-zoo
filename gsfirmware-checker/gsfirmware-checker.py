@@ -1,9 +1,11 @@
 import csv
 import argparse
 import os
-import time
 import random
-import requests
+import time
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
 
 
 def printtable(firmware, regime, output):
@@ -61,10 +63,10 @@ def printtable(firmware, regime, output):
                 lines.append("| " + firmware[i-1] + " | " + firmware[i] + " | ")
                 lines.append("-" * 50)
         if regime == "3":
-            lines.append("-"*14 + "-Weak-Passwords-" + "-"*15)
+            lines.append("-"*20 + "-Weak-Passwords-" + "-"*20)
             for i in range(1, len(firmware)-1, 4):
                 lines.append("| " + firmware[i-1] + " | " + firmware[i] + " | " + firmware[i+1] + " | " + firmware[i+2])
-                lines.append("-" * 45)
+                lines.append("-" * 60)
         try:
             with open("output", "w+") as f:
                 for line in lines:
@@ -209,51 +211,94 @@ def parsevoips(scans):
 def getGSsession():
     # Session should be randomly generated where the 10th symbol is 'e'
     rand = ""
-    for i in range(0, 20):
-        if i == 9:
+    for i in range(0, 21):
+        if i == 10:
             rand = rand + "e"
             continue
         rand = rand + str(random.randint(0, 9))
-    cookies = {'session-role': 'user', 'session-identity': rand}
+    cookies = {'session-role': 'user', 'session-identity': rand, 'device': 'c0%3A74%3Aad%3A12%3Ac9%3Ac6', 'TRACKID': 'b2d11a71721a8b7d4b4872df12d278d2'}
     return cookies
 
 
 def prepareGSheader(targetip):
-    url = "http://" + targetip + "/cgi-bin/dologin"
-    headers = {'Accept': '*/*', 'Accept-Encoding': 'gzip, deflate', 'Accept-Language': 'en-US,en;q=0.5', 'Cache-Control': 'max-age=0, no-cache', 'Connection': 'keep-alive', 'Content-Length': '26', 'Content-Type': 'application/x-www-form-urlencoded', 'Host': targetip, 'Origin': 'http://'+ targetip, 'Pragma': 'no-cache', 'Referer': 'http://'+ targetip, 'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101 Firefox/91.0'}
+    url = "http://" + targetip
+    headers = {'Accept': '*/*', 'Accept-Encoding': 'gzip, deflate', 'Accept-Language': 'en-US,en;q=0.5', 'Cache-Control': 'max-age=0, no-cache', 'Connection': 'keep-alive', 'Content-Length': '40', 'Content-Type': 'application/x-www-form-urlencoded', 'Host': targetip, 'Origin': 'http://'+ targetip, 'Pragma': 'no-cache', 'Referer': 'http://'+ targetip, 'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101 Firefox/91.0'}
     cookies = getGSsession()
     return url, headers, cookies
 
 
-def checkdefaultpasswords(parsedvoips):
+def checkdefaultpasswords(parsedvoips, path):
     vulns = []
+    fillsleep = 3
+    buttonsleep = 5
+    requestsleep = 10
     # default passwords for the Grandstreams
-    defaultpasses = {'Grandstream': ['admin', 'admin', 'user', '123']}
+    defaultpasses = {'Grandstream': ['user', '123', 'admin', 'admin']}
     for i in range(0, len(parsedvoips), 2):
+        # requesting main params for the request
+        url, headers, cookies = prepareGSheader(parsedvoips[i + 1])
         if "Grandstream" in parsedvoips[i]:
-            # requesting main params for the request
-            url, headers, cookies = prepareGSheader(parsedvoips[i+1])
             for j in range(0, len(defaultpasses['Grandstream']), 2):
-                r = requests.post(url, data={'username': defaultpasses['Grandstream'][j], 'password': defaultpasses['Grandstream'][j+1]}, headers=headers, cookies=cookies)
                 try:
-                    # if we used all attempts we are sleeping for 5 mins and 1 sec and trying one more request
-                    if "locked" in r.json()['body']:
-                        time.sleep(301)
-                        r = requests.post(url, data={'username': defaultpasses['Grandstream'][j],
-                                                     'password': defaultpasses['Grandstream'][j + 1]}, headers=headers,
-                                          cookies=cookies)
-                    # if we've logged in - we are saving the username and password for the report
-                    if "wrong" not in r.json()['body']:
-                        vulns.append(parsedvoips[i])
-                        vulns.append(parsedvoips[i+1])
-                        vulns.append(defaultpasses['Grandstream'][j])
-                        vulns.append(defaultpasses['Grandstream'][j+1])
+                    web = webdriver.Chrome(executable_path=path)
+                    web.get(url)
+                    time.sleep(requestsleep)
+                    inputs = web.find_elements(By.TAG_NAME, "input")
+                    if len(inputs) == 4 or len(inputs) == 5:
+                        inputs[1].clear()
+                        inputs[1].send_keys(defaultpasses['Grandstream'][j])
+                        time.sleep(fillsleep)
+                        inputs[2].clear()
+                        inputs[2].send_keys(defaultpasses['Grandstream'][j+1])
+                        time.sleep(fillsleep)
+                        inputs[3].send_keys(Keys.ENTER)
+                        time.sleep(buttonsleep)
+                    elif len(inputs) == 3:
+                        inputs[0].clear()
+                        inputs[0].send_keys(defaultpasses['Grandstream'][j + 1])
+                        time.sleep(fillsleep)
+                        inputs[1].send_keys(Keys.ENTER)
+                        time.sleep(buttonsleep)
+                    elif len(inputs) == 2:
+                        inputs[0].clear()
+                        inputs[0].send_keys(defaultpasses['Grandstream'][j])
+                        time.sleep(fillsleep)
+                        inputs[1].clear()
+                        inputs[1].send_keys(defaultpasses['Grandstream'][j + 1])
+                        time.sleep(fillsleep)
+                        button = web.find_element(By.TAG_NAME, "input")
+                        button.send_keys(Keys.ENTER)
+                        time.sleep(buttonsleep)
+                    texts = web.find_elements(By.TAG_NAME, "b")
+                    if texts is None or texts == []:
+                        links = web.find_elements(By.TAG_NAME, "a")
+                        if links is None or links == []:
+                            web.close()
+                            web.quit()
+                            continue
+                    for text in texts:
+                        if "MAC Address" in text.text or "SETTINGS" in text.text:
+                            vulns.append(parsedvoips[i])
+                            vulns.append(parsedvoips[i + 1])
+                            vulns.append(defaultpasses['Grandstream'][j])
+                            vulns.append(defaultpasses['Grandstream'][j + 1])
+                            break
+                    for link in links:
+                        if "logout" in link.text or "Logout" in link.text:
+                            vulns.append(parsedvoips[i])
+                            vulns.append(parsedvoips[i + 1])
+                            vulns.append(defaultpasses['Grandstream'][j])
+                            vulns.append(defaultpasses['Grandstream'][j + 1])
+                            break
+                    web.close()
+                    web.quit()
                 except:
-                    break
-                time.sleep(1)
+                    web.close()
+                    web.quit()
+                    continue
     return vulns
 
-def main(gcsvfile, checkip, system, output):
+def main(gcsvfile, checkip, system, output, path):
     # parsing firmwares
     etalon = csvparser("etalon", gcsvfile)
     # checking what system we received from the command line
@@ -286,7 +331,7 @@ def main(gcsvfile, checkip, system, output):
         printtable(report, "2", output)
     # parsing VoIPs for pairs Model - IP
     parsedvoips = parsevoips(scan)
-    vulneredips = checkdefaultpasswords(parsedvoips)
+    vulneredips = checkdefaultpasswords(parsedvoips, path)
     if vulneredips != []:
         printtable(vulneredips, "3", output)
 
@@ -295,12 +340,14 @@ if __name__ == '__main__':
     # default parameters
     system = "kali"
     regime = "console"
+    path = "/home/kali/Downloads/simple-converts-zoo/gsfirmware-checker"
     # parsing input
     parser = argparse.ArgumentParser()
     parser.add_argument('-v', '--versions', type=str, required=True)
     parser.add_argument('-i', '--ip', type=str, required=True)
     parser.add_argument('-s', '--system', type=str, required=False)
     parser.add_argument('-o', '--output', type=str, required=False)
+    parser.add_argument('-p', '--path', type=str, required=False)
     args = parser.parse_args()
     # if system -s key exists we are overwriting the default value
     if args.system is not None:
@@ -312,7 +359,9 @@ if __name__ == '__main__':
         else:
             print("-r or --regime parameter should be 'console' or 'file'")
             exit(0)
-
+    # if system -p key exists we are overwriting the default value
+    if args.path is not None:
+        path = args.path
     # checking if we are working with IP or file
     if os.path.exists(args.ip):
         # checking the file for valid format
@@ -327,4 +376,4 @@ if __name__ == '__main__':
             ip = row.split("\n")
             main(args.versions, ip[0], system, regime)
     else:
-        main(args.versions, args.ip, system, regime)
+        main(args.versions, args.ip, system, regime, path)

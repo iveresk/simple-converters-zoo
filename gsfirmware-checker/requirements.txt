@@ -1,3 +1,4 @@
 argparse
 sipvicious
 requests
+selenium
