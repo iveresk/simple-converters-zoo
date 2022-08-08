@@ -201,7 +201,10 @@ def parsevoips(scans):
     res = []
     bytefree = []
     for i in range(0, len(scans)):
-        bytefree.append(scans[i].split("b'")[1])
+        try:
+            bytefree.append(scans[i].split("b'")[1])
+        except:
+            bytefree.append(scans[i].split("b'")[0])
     for i in range(1, len(bytefree), 2):
         res.append(bytefree[i].split(" ")[0])
         res.append(bytefree[i-1].split(":")[0])
@@ -340,7 +343,7 @@ if __name__ == '__main__':
     # default parameters
     system = "kali"
     regime = "console"
-    path = "/home/kali/Downloads/simple-converts-zoo/gsfirmware-checker"
+    path = "/home/kali/Downloads/simple-converters-zoo/gsfirmware-checker"
     # parsing input
     parser = argparse.ArgumentParser()
     parser.add_argument('-v', '--versions', type=str, required=True)
