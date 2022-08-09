@@ -1,10 +1,10 @@
-GWN7000;1.0.9.6 Release Notes;firmware.grandstream.com;
+GWN7000;1.0.9.6 Release Notes;;
 GWN7600;1.0.9.13 Release Notes;;
 GWN7600LR;1.0.9.13  Release Notes;;
 GWN7610;1.0.9.13  Release Notes;;
 GWN7630;1.0.9.12  Release Notes;;
 GWN7600/7610;1.0.9.4 deployment;;
-GWN7600;1.0.21.7 Release Notes;firmware.grandstream.com;
+GWN7600;1.0.21.7 Release Notes;;
 GWN7600LR;1.0.21.7 Release Notes;;
 GWN7602;1.0.19.36 Release Notes;;
 GWN7605;1.0.23.7 Release Notes;;
@@ -30,56 +30,56 @@ UCM6308A;1.0.15.13 Release Notes;;
 UCM6202;1.0.20.44 Release Notes;;
 UCM6204;1.0.20.44 Release Notes;;
 UCM6208;1.0.20.44 Release Notes;;
-GRP2601/PGRP2602/P/WGRP2603/PGRP2604/P;1.0.3.63 Release Notes;firmware.grandstream.com;1.0.3.67BETA
-GRP2612/P/WGRP2613GRP2614GRP2615GRP2616GRP2624GRP2634GRP2670;1.0.7.33 Release Notes;firmware.grandstream.com;1.0.9.22BETA
-GXP1610/GXP1615GXP1620/GXP1625GXP1628GXP1630;1.0.7.27 Release Notes;firmware.grandstream.com;
-GXP1780/GXP1782GXP1760W;1.0.1.123 Release Notes;firmware.grandstream.com;
-GXP2130;1.0.11.57 Release Notes;For HTTP upgrading, please use this path:firmware.grandstream.com/gxp21xx/1_0_11_57 
+GRP2601/PGRP2602/P/WGRP2603/PGRP2604/P;1.0.3.63 Release Notes;;1.0.3.67BETA
+GRP2612/P/WGRP2613GRP2614GRP2615GRP2616GRP2624GRP2634GRP2670;1.0.7.33 Release Notes;;1.0.9.22BETA
+GXP1610/GXP1615GXP1620/GXP1625GXP1628GXP1630;1.0.7.27 Release Notes;;
+GXP1780/GXP1782GXP1760W;1.0.1.123 Release Notes;;
+GXP2130;1.0.11.57 Release Notes;For HTTP upgrading, please use this path:/gxp21xx/1_0_11_57 
 GXP2130 hardware version 4.0AGXP2135 hardware version 3.0A and 3.1A;
 GXP2135;1.0.11.57 Release Notes;;
 GXP2140;1.0.11.57 Release Notes;;
 GXP2160;1.0.11.57 Release Notes;;
 GXP2170;1.0.11.57 Release Notes;;
-WP810WP822WP825;1.0.11.8 Release Notes;firmware.grandstream.com;1.0.11.16BETA
-WP820;1.0.7.43 Release Notes;firmware.grandstream.com;1.0.7.50BETA
-DP752DP750DP760;1.0.17.4 Release Notes;firmware.grandstream.com;
+WP810WP822WP825;1.0.11.8 Release Notes;;1.0.11.16BETA
+WP820;1.0.7.43 Release Notes;;1.0.7.50BETA
+DP752DP750DP760;1.0.17.4 Release Notes;;
 IPVT10;1.0.6.13 Release Notes;;
 GVC3200GVC3202;1.0.3.69 Release Notes
 GVC3210;1.0.1.76 Release Notes
-GVC3210 firmware 1.0.1.51+ is required to be used with IPVideoTalk service.";firmware.grandstream.com;
-GVC3212;1.0.1.6;firmware.grandstream.com;
-GVC3220;1.0.1.37 Release Notes;firmware.grandstream.com;
-GAC2500;1.0.3.42 Release Notes;firmware.grandstream.com;
-GXV3380;1.0.3.29 Release Notes;firmware.grandstream.com;
-GXV3370;1.0.3.38 Release Notes;firmware.grandstream.com;
-GXV3350;1.0.3.40 Release Notes;firmware.grandstream.com;
-GXW-4008;1.4.1.5 Release Notes;firmware.grandstream.com;
-GBX20;1.0.1.3;firmware.grandstream.com;
-HT801;1.0.41.2 Release Notes;firmware.grandstream.com;
-HT802;1.0.41.2 Release Notes;firmware.grandstream.com;
-HT812;1.0.41.2 Release Notes;firmware.grandstream.com;
-HT813;1.0.13.3 Release Notes;firmware.grandstream.com;
-HT814;1.0.41.2 Release Notes;firmware.grandstream.com;
-HT818;1.0.41.2 Release Notes;firmware.grandstream.com;
-GXW410x;1.4.1.5 Release Notes;firmware.grandstream.com;
-GXW4216V1;1.0.23.2 Release Notes;firmware.grandstream.com;
-GXW4224V1;1.0.23.2 Release Notes;firmware.grandstream.com;
-GXW4232V1;1.0.23.2 Release Notes;firmware.grandstream.com;
-GXW4248V1;1.0.23.2 Release Notes;firmware.grandstream.com;
+GVC3210 firmware 1.0.1.51+ is required to be used with IPVideoTalk service.";;
+GVC3212;1.0.1.6;;
+GVC3220;1.0.1.37 Release Notes;;
+GAC2500;1.0.3.42 Release Notes;;
+GXV3380;1.0.3.29 Release Notes;;
+GXV3370;1.0.3.38 Release Notes;;
+GXV3350;1.0.3.40 Release Notes;;
+GXW-4008;1.4.1.5 Release Notes;;
+GBX20;1.0.1.3;;
+HT801;1.0.41.2 Release Notes;;
+HT802;1.0.41.2 Release Notes;;
+HT812;1.0.41.2 Release Notes;;
+HT813;1.0.13.3 Release Notes;;
+HT814;1.0.41.2 Release Notes;;
+HT818;1.0.41.2 Release Notes;;
+GXW410x;1.4.1.5 Release Notes;;
+GXW4216V1;1.0.23.2 Release Notes;;
+GXW4224V1;1.0.23.2 Release Notes;;
+GXW4232V1;1.0.23.2 Release Notes;;
+GXW4248V1;1.0.23.2 Release Notes;;
 GXW4216V2NEW;1.0.3.4
 GXW4224 V2NEW;1.0.3.4
 GXW4232 V2NEW;1.0.3.4
 GXW4248 V2NEW;1.0.3.4
-GXW4501GXW4502GXW4504;1.0.1.7 Release Notes;firmware.grandstream.com;
-GSC3570;1.0.5.21 Release Notes;firmware.grandstream.com;
-GSC3505;1.0.1.18 Release Notes;firmware.grandstream.com;
-GSC3510;1.0.1.18 Release Notes;firmware.grandstream.com;
-GDS3702;1.0.3.11 Release Notes;firmware.grandstream.com;
-GDS3705;1.0.3.11 Release Notes;firmware.grandstream.com;
-GDS3710;1.0.11.18 Release Notes;firmware.grandstream.com;
-GSC3620;1.0.7.5  Release Notes;firmware.grandstream.com;
-GSC3610/GSC3615;1.0.3.8 Release Notes;firmware.grandstream.com;
-GXV3500;1.0.3.14 Release Notes;firmware.grandstream.com;1.0.3.17BETA
+GXW4501GXW4502GXW4504;1.0.1.7 Release Notes;;
+GSC3570;1.0.5.21 Release Notes;;
+GSC3505;1.0.1.18 Release Notes;;
+GSC3510;1.0.1.18 Release Notes;;
+GDS3702;1.0.3.11 Release Notes;;
+GDS3705;1.0.3.11 Release Notes;;
+GDS3710;1.0.11.18 Release Notes;;
+GSC3620;1.0.7.5  Release Notes;;
+GSC3610/GSC3615;1.0.3.8 Release Notes;;
+GXV3500;1.0.3.14 Release Notes;;1.0.3.17BETA
 BT101;1.1.0.26;;
 BT102;1.1.0.26;;
 HT286 (Rev. 2.0);1.0.7.19;;
@@ -136,13 +136,13 @@ GXP1165;1.0.8.9 Release Notes;;
 GXP1400;1.0.8.9 Release Notes;;
 GXP1405;1.0.8.9 Release Notes;;
 GXP1450;1.0.8.9 Release Notes;;
-GXW4004;1.0.16.2 Release Notes;HTTP Upgrade Server: firmware.grandstream.com;
-GXW4008;1.0.16.2 Release Notes;HTTP Upgrade Server: firmware.grandstream.com;
-HT502;1.0.16.2 Release Notes;HTTP Upgrade Server: firmware.grandstream.com;
-HT503;1.0.16.3 Release Notes;HTTP Upgrade Server: firmware.grandstream.com;
-HT701;1.0.10.3  Release Notes;HTTP Upgrade Server: firmware.grandstream.com;
-HT702;1.0.10.3  Release Notes;HTTP Upgrade Server: firmware.grandstream.com;
-HT704;1.0.10.3  Release Notes;HTTP Upgrade Server: firmware.grandstream.com;
+GXW4004;1.0.16.2 Release Notes;HTTP Upgrade Server:;
+GXW4008;1.0.16.2 Release Notes;HTTP Upgrade Server:;
+HT502;1.0.16.2 Release Notes;HTTP Upgrade Server:;
+HT503;1.0.16.3 Release Notes;HTTP Upgrade Server:;
+HT701;1.0.10.3 Release Notes;HTTP Upgrade Server:;
+HT702;1.0.10.3 Release Notes;HTTP Upgrade Server:;
+HT704;1.0.10.3 Release Notes;HTTP Upgrade Server:;
 UCM6102;1.0.18.18 Release Notes;;
 UCM6104;1.0.18.18 Release Notes;;
 UCM6108;1.0.18.18 Release Notes;;

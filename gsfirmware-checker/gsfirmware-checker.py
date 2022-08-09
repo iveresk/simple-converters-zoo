@@ -84,14 +84,15 @@ def printtable(firmware, regime, output):
 
 def calculateversions(firmware, basecve):
     res = []
-    for i in range(0, len(firmware), 2):
+    for i in range(0, len(firmware),2):
         firmwarespace = firmware[i].split(" ")
-        for j in range(0, len(basecve), 2):
-            basespace = basecve[j].split(";")
-            if firmwarespace[0] in basespace[1]:
-                if firmware[i+1] <= basecve[j+1]:
-                    res.append(firmware[i])
-                    res.append(basespace[0])
+        for ii in range(0, len(firmwarespace)):
+            for j in range(0, len(basecve), 2):
+                basespace = basecve[j].split(";")
+                if firmwarespace[ii] in basespace[1]:
+                    if firmware[i+1] <= basecve[j+1]:
+                        res.append(firmware[i])
+                        res.append(basespace[0])
     return res
 
 
@@ -102,10 +103,20 @@ def versiontoint(totransform):
         try:
             index1 = totransform.split("1.")
             index2 = "1." + index1[1]
+            try:
+                index2 = index2 + "1." + index1[2]
+            except:
+                pass
             index = index2.split(".")
             for i in range(0, len(index)):
                 if index[0] == "1":
                     r = index[i].split(" ")
+                    if len(r) > 1:
+                        res = res + r[0]
+                        int(res)
+                        temp = int(res)
+                        continue
+                    r = index[i].split("'")
                     if len(r) > 1:
                         res = res + r[0]
                         int(res)
@@ -147,7 +158,7 @@ def transformversions(totransform):
 
 def checkfirmware(etalon, scan):
     report = []
-    for i in range(0, len(etalon)-1):
+    for i in range(0, len(etalon)):
         for j in range(0, len(scan)):
             index = scan[j].split(" ")
             for k in range(1, len(index)):
@@ -156,13 +167,13 @@ def checkfirmware(etalon, scan):
                 if index[k] in etalon[i] or etalon[i] in index[k]:
                     report.append(scan[j-1])
                     report.append(scan[j])
-                    version = etalon[i+1].split(";")
+                    version = etalon[i].split(";")
                     report.append(version[1])
                     break
     return report
 
 
-def csvparser(regime, csvfile):
+def csvparser(csvfile):
     res = []
     try:
         file = open(csvfile)
@@ -173,27 +184,14 @@ def csvparser(regime, csvfile):
     rows = []
     for row in csvreader:
         rows.append(row)
-
-    if regime in "etalon":
-        for row in rows:
-            for col in row:
-                if col == '':
-                    continue
-                if "GWN" in col or "UCM" in col or "GRP" in col or "GXP" in col or "WP" in col or "DP" in col:
-                    res.append(col)
-                if "GVC" in col or "IPVT" in col or "GMD" in col or "GAC" in col or "GXV" in col or "GBX" in col:
-                    res.append(col)
-                if "HT" in col or "GXW" in col or "GSC" in col or "GDS" in col or "BT" in col or "GXP" in col:
-                    res.append(col)
-    else:
-        for row in rows:
-            for col in row:
-                if col in '':
-                    continue
-                if col in 'N/A':
-                    continue
-                res.append(col)
     file.close()
+    for row in rows:
+        for col in row:
+            if col in '':
+                continue
+            if col in 'N/A':
+                continue
+            res.append(col)
     return res
 
 
@@ -280,14 +278,14 @@ def checkdefaultpasswords(parsedvoips, path):
                             web.quit()
                             continue
                     for text in texts:
-                        if "MAC Address" in text.text or "SETTINGS" in text.text:
+                        if "MAC" in text.text or "SETTINGS" in text.text:
                             vulns.append(parsedvoips[i])
                             vulns.append(parsedvoips[i + 1])
                             vulns.append(defaultpasses['Grandstream'][j])
                             vulns.append(defaultpasses['Grandstream'][j + 1])
                             break
                     for link in links:
-                        if "logout" in link.text or "Logout" in link.text:
+                        if "logout" in link.text or "Logout" in link.text  or "Логаут" in link.text:
                             vulns.append(parsedvoips[i])
                             vulns.append(parsedvoips[i + 1])
                             vulns.append(defaultpasses['Grandstream'][j])
@@ -303,7 +301,7 @@ def checkdefaultpasswords(parsedvoips, path):
 
 def main(gcsvfile, checkip, system, output, path):
     # parsing firmwares
-    etalon = csvparser("etalon", gcsvfile)
+    etalon = csvparser(gcsvfile)
     # checking what system we received from the command line
     if system == "kali":
         os.system("svreport delete -t svmap -s scan1")
@@ -316,7 +314,7 @@ def main(gcsvfile, checkip, system, output, path):
     # executing svmap scan and generating report with standard filename 'scan1.csv'
     os.system(cmd)
     os.system(cmd1)
-    scan = csvparser("scan", "scan1.csv")
+    scan = csvparser("scan1.csv")
     # checking firmware
     firmware = checkfirmware(etalon, scan)
     # if there is no device in our firmware base we are just finishing the flow
@@ -324,7 +322,7 @@ def main(gcsvfile, checkip, system, output, path):
         return
     printtable(firmware, "1", output)
     # CSV CVE Base
-    csvbase = csvparser("cvebase", "gscvebase.csv")
+    csvbase = csvparser("gscvebase.csv")
     # transform versions
     firmware_transformed = transformversions(firmware)
     base_transformed = transformversions(csvbase)
@@ -343,7 +341,7 @@ if __name__ == '__main__':
     # default parameters
     system = "kali"
     regime = "console"
-    path = "/home/kali/Downloads/simple-converters-zoo/gsfirmware-checker"
+    path = "/home/kali/chromedriver"
     # parsing input
     parser = argparse.ArgumentParser()
     parser.add_argument('-v', '--versions', type=str, required=True)
@@ -355,6 +353,9 @@ if __name__ == '__main__':
     # if system -s key exists we are overwriting the default value
     if args.system is not None:
         system = args.system
+    # setting path to a chromedriver
+    if args.path is not None:
+        path = args.path
     # if regime -r key exists we are overwriting the default value
     if args.output is not None:
         if args.output == "console" or args.output == "file":
@@ -362,9 +363,7 @@ if __name__ == '__main__':
         else:
             print("-r or --regime parameter should be 'console' or 'file'")
             exit(0)
-    # if system -p key exists we are overwriting the default value
-    if args.path is not None:
-        path = args.path
+
     # checking if we are working with IP or file
     if os.path.exists(args.ip):
         # checking the file for valid format
@@ -377,6 +376,6 @@ if __name__ == '__main__':
         for row in ips:
             # clearing ip from '\n' symbol
             ip = row.split("\n")
-            main(args.versions, ip[0], system, regime)
+            main(args.versions, ip[0], system, regime, path)
     else:
         main(args.versions, args.ip, system, regime, path)
