@@ -124,6 +124,7 @@ def transformversions(totransform):
         for i, row in enumerate(totransform):
             if i >= lentamente:
                 break
+            # ignoring all IPs by 5060 port as for SIP or VoIP
             if "5060" not in row:
                 temp = versiontoint(row)
                 report.append(row)
@@ -171,6 +172,8 @@ def csvparser(csvfile):
 def parsevoips(scans):
     res = []
     bytefree = []
+    # ignoring 'bytes' symbols for Kali Linux and take scanned info 'as is' for Ubuntu or Mac
+    # as sipvicious has different format output for different systems - different engines
     for i in range(0, len(scans)):
         try:
             bytefree.append(scans[i].split("b'")[1])
@@ -195,6 +198,7 @@ def getGSsession():
 
 
 def prepareGSheader(targetip):
+    # preparing URL, Headers and requesting Cookies
     url = "http://" + targetip
     headers = {'Accept': '*/*', 'Accept-Encoding': 'gzip, deflate', 'Accept-Language': 'en-US,en;q=0.5', 'Cache-Control': 'max-age=0, no-cache', 'Connection': 'keep-alive', 'Content-Length': '40', 'Content-Type': 'application/x-www-form-urlencoded', 'Host': targetip, 'Origin': 'http://'+ targetip, 'Pragma': 'no-cache', 'Referer': 'http://'+ targetip, 'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101 Firefox/91.0'}
     cookies = getGSsession()
@@ -202,11 +206,14 @@ def prepareGSheader(targetip):
 
 
 def checkdefaultpasswords(parsedvoips, path):
+    # Entering passwords via Web-panel
+    # as in Selenium everything is strictly hard-coded to the structure of a Web-panel
+    # So, there are as much IF statements as panels for different hardwares.
     vulns = []
     fillsleep = 3
     buttonsleep = 5
     requestsleep = 10
-    # default passwords for the Grandstreams
+    # default passwords for the Grandstreams and Cisco
     defaultpasses = {'Grandstream': ['user', '123', 'admin', 'admin'], 'Cisco': ['cisco', 'cisco']}
     for i in range(0, len(parsedvoips), 2):
         # requesting main params for the request
