@@ -124,7 +124,6 @@ def transformversions(totransform):
         for i, row in enumerate(totransform):
             if i >= lentamente:
                 break
-            # ignoring all IPs by 5060 port as for SIP or VoIP
             if "5060" not in row:
                 temp = versiontoint(row)
                 report.append(row)
@@ -172,8 +171,6 @@ def csvparser(csvfile):
 def parsevoips(scans):
     res = []
     bytefree = []
-    # ignoring 'bytes' symbols for Kali Linux and take scanned info 'as is' for Ubuntu or Mac
-    # as sipvicious has different format output for different systems - different engines
     for i in range(0, len(scans)):
         try:
             bytefree.append(scans[i].split("b'")[1])
@@ -198,7 +195,6 @@ def getGSsession():
 
 
 def prepareGSheader(targetip):
-    # preparing URL, Headers and requesting Cookies
     url = "http://" + targetip
     headers = {'Accept': '*/*', 'Accept-Encoding': 'gzip, deflate', 'Accept-Language': 'en-US,en;q=0.5', 'Cache-Control': 'max-age=0, no-cache', 'Connection': 'keep-alive', 'Content-Length': '40', 'Content-Type': 'application/x-www-form-urlencoded', 'Host': targetip, 'Origin': 'http://'+ targetip, 'Pragma': 'no-cache', 'Referer': 'http://'+ targetip, 'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101 Firefox/91.0'}
     cookies = getGSsession()
@@ -206,15 +202,14 @@ def prepareGSheader(targetip):
 
 
 def checkdefaultpasswords(parsedvoips, path):
-    # Entering passwords via Web-panel
-    # as in Selenium everything is strictly hard-coded to the structure of a Web-panel
-    # So, there are as much IF statements as panels for different hardwares.
     vulns = []
     fillsleep = 3
     buttonsleep = 5
     requestsleep = 10
-    # default passwords for the Grandstreams and Cisco
-    defaultpasses = {'Grandstream': ['user', '123', 'admin', 'admin'], 'Cisco': ['cisco', 'cisco']}
+    web = webdriver.Chrome(executable_path=path)
+    web.set_page_load_timeout(20)
+    # default passwords for the Grandstreams
+    defaultpasses = {'Grandstream': ['user', '123', 'admin', 'admin'], 'Cisco': ['cisco', 'cisco'], 'Linksys': ['cisco', 'cisco']}
     for i in range(0, len(parsedvoips), 2):
         # requesting main params for the request
         url, headers, cookies = prepareGSheader(parsedvoips[i + 1])
@@ -222,6 +217,7 @@ def checkdefaultpasswords(parsedvoips, path):
             for j in range(0, len(defaultpasses['Grandstream']), 2):
                 try:
                     web = webdriver.Chrome(executable_path=path)
+                    web.set_page_load_timeout(20)
                     web.get(url)
                     time.sleep(requestsleep)
                     inputs = web.find_elements(By.TAG_NAME, "input")
@@ -251,25 +247,28 @@ def checkdefaultpasswords(parsedvoips, path):
                         button.send_keys(Keys.ENTER)
                         time.sleep(buttonsleep)
                     texts = web.find_elements(By.TAG_NAME, "b")
-                    if texts is None or texts == []:
-                        links = web.find_elements(By.TAG_NAME, "a")
-                        if links is None or links == []:
-                            web.close()
-                            web.quit()
-                            continue
+                    links = web.find_elements(By.TAG_NAME, "a")
                     for text in texts:
                         if "MAC" in text.text or "SETTINGS" in text.text:
                             vulns.append(parsedvoips[i])
                             vulns.append(parsedvoips[i + 1])
-                            vulns.append(defaultpasses['Grandstream'][j])
-                            vulns.append(defaultpasses['Grandstream'][j + 1])
+                            if "Grandstream" in parsedvoips[i]:
+                                vulns.append(defaultpasses['Grandstream'][j])
+                                vulns.append(defaultpasses['Grandstream'][j + 1])
+                            if "Cisco" in parsedvoips[i] or "Linksys" in parsedvoips[i]:
+                                vulns.append(defaultpasses['Cisco'][j])
+                                vulns.append(defaultpasses['Cisco'][j + 1])
                             break
                     for link in links:
-                        if "logout" in link.text or "Logout" in link.text  or "Логаут" in link.text:
+                        if "logout" in link.text or "Logout" in link.text or "Логаут" in link.text or "Lan Status" in link.text:
                             vulns.append(parsedvoips[i])
                             vulns.append(parsedvoips[i + 1])
-                            vulns.append(defaultpasses['Grandstream'][j])
-                            vulns.append(defaultpasses['Grandstream'][j + 1])
+                            if "Grandstream" in parsedvoips[i]:
+                                vulns.append(defaultpasses['Grandstream'][j])
+                                vulns.append(defaultpasses['Grandstream'][j + 1])
+                            if "Cisco" in parsedvoips[i] or "Linksys" in parsedvoips[i]:
+                                vulns.append(defaultpasses['Cisco'][j])
+                                vulns.append(defaultpasses['Cisco'][j + 1])
                             break
                     web.close()
                     web.quit()
@@ -277,10 +276,12 @@ def checkdefaultpasswords(parsedvoips, path):
                     web.close()
                     web.quit()
                     continue
-        if "Cisco" in parsedvoips[i]:
+        if "Cisco" in parsedvoips[i] or "Linksys" in parsedvoips[i]:
             for j in range(0, len(defaultpasses['Cisco']), 2):
                 try:
+                    loggedin = False
                     web = webdriver.Chrome(executable_path=path)
+                    web.set_page_load_timeout(20)
                     web.get(url)
                     time.sleep(requestsleep)
                     inputs = web.find_elements(By.TAG_NAME, "input")
@@ -293,34 +294,47 @@ def checkdefaultpasswords(parsedvoips, path):
                         time.sleep(fillsleep)
                         inputs[5].send_keys(Keys.ENTER)
                         time.sleep(buttonsleep)
-                    web.close()
-                    web.quit()
+                        loggedin = True
+                    links_before_login = web.find_elements(By.TAG_NAME, "a")
+                    if links_before_login is None or links_before_login == []:
+                        continue
+                    for link in links_before_login:
+                        if "advanced" in link.text or "Advanced" in link.text:
+                            loggedin = True
+                            link.click()
+                            break
+                    if not loggedin:
+                        continue
                     texts = web.find_elements(By.TAG_NAME, "b")
-                    if texts is None or texts == []:
-                        links = web.find_elements(By.TAG_NAME, "a")
-                        if links is None or links == []:
-                            web.close()
-                            web.quit()
-                            continue
+                    links = web.find_elements(By.TAG_NAME, "a")
                     for text in texts:
                         if "MAC" in text.text or "SETTINGS" in text.text:
                             vulns.append(parsedvoips[i])
                             vulns.append(parsedvoips[i + 1])
-                            vulns.append(defaultpasses['Grandstream'][j])
-                            vulns.append(defaultpasses['Grandstream'][j + 1])
+                            if "Grandstream" in parsedvoips[i]:
+                                vulns.append(defaultpasses['Grandstream'][j])
+                                vulns.append(defaultpasses['Grandstream'][j + 1])
+                            if "Cisco" in parsedvoips[i] or "Linksys" in parsedvoips[i]:
+                                vulns.append(defaultpasses['Cisco'][j])
+                                vulns.append(defaultpasses['Cisco'][j + 1])
                             break
                     for link in links:
-                        if "logout" in link.text or "Logout" in link.text or "Логаут" in link.text:
+                        if "logout" in link.text or "Logout" in link.text or "Логаут" in link.text or "Lan Status" in link.text:
                             vulns.append(parsedvoips[i])
                             vulns.append(parsedvoips[i + 1])
-                            vulns.append(defaultpasses['Grandstream'][j])
-                            vulns.append(defaultpasses['Grandstream'][j + 1])
+                            if "Grandstream" in parsedvoips[i]:
+                                vulns.append(defaultpasses['Grandstream'][j])
+                                vulns.append(defaultpasses['Grandstream'][j + 1])
+                            if "Cisco" in parsedvoips[i] or "Linksys" in parsedvoips[i]:
+                                vulns.append(defaultpasses['Cisco'][j])
+                                vulns.append(defaultpasses['Cisco'][j + 1])
                             break
                     web.close()
                     web.quit()
                 except:
                     web.close()
                     web.quit()
+                    continue
     return vulns
 
 def main(gcsvfile, checkip, system, output, path):
