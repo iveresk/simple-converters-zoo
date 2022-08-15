@@ -300,8 +300,8 @@ def checkdefaultpasswords(parsedvoips, path):
                         continue
                     for link in links_before_login:
                         if "advanced" in link.text or "Advanced" in link.text:
-                            loggedin = True
                             link.click()
+                            loggedin = True
                             break
                     if not loggedin:
                         continue
