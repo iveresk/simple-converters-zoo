@@ -1,6 +1,7 @@
 import csv
 import argparse
 import os
+import re
 import random
 import time
 from selenium import webdriver
@@ -84,7 +85,7 @@ def printtable(firmware, regime, output):
 
 def calculateversions(firmware, basecve):
     res = []
-    for i in range(0, len(firmware),2):
+    for i in range(0, len(firmware), 4):
         firmwarespace = firmware[i].split(" ")
         for ii in range(0, len(firmwarespace)):
             for j in range(0, len(basecve), 2):
@@ -99,43 +100,17 @@ def calculateversions(firmware, basecve):
 def versiontoint(totransform):
     res = ""
     temp = 0
-    if "1." in totransform:
-        try:
-            index1 = totransform.split("1.")
-            index2 = "1." + index1[1]
-            try:
-                index2 = index2 + "1." + index1[2]
-            except:
-                pass
-            index = index2.split(".")
+    try:
+        pattern = re.compile(r"(([0-9]){1,2}\.){2,3}([0-9]){1,2}")
+        match = re.search(pattern, str(totransform))
+        if match:
+            index = match.group().split(".")
             for i in range(0, len(index)):
-                if index[0] == "1":
-                    r = index[i].split(" ")
-                    if len(r) > 1:
-                        res = res + r[0]
-                        int(res)
-                        temp = int(res)
-                        continue
-                    r = index[i].split("'")
-                    if len(r) > 1:
-                        res = res + r[0]
-                        int(res)
-                        temp = int(res)
-                        continue
-                    res = res + index[i]
-                    int(res)
-                    temp = int(res)
-                if index[1] == "1":
-                    if len(r) > 1:
-                        res = res + r[0]
-                        int(res)
-                        temp = int(res)
-                        continue
-                    res = res + index[i]
-                    int(res)
-                    temp = int(res)
-        except:
-            return temp
+                res = res + index[i]
+                temp = int(res)
+
+    except:
+        return temp
     return temp
 
 
@@ -149,7 +124,7 @@ def transformversions(totransform):
         for i, row in enumerate(totransform):
             if i >= lentamente:
                 break
-            if "1." in row:
+            if "5060" not in row:
                 temp = versiontoint(row)
                 report.append(row)
                 report.append(temp)
@@ -159,17 +134,15 @@ def transformversions(totransform):
 def checkfirmware(etalon, scan):
     report = []
     for i in range(0, len(etalon)):
-        for j in range(0, len(scan)):
-            index = scan[j].split(" ")
-            for k in range(1, len(index)):
-                if index[k] == '':
-                    break
-                if index[k] in etalon[i] or etalon[i] in index[k]:
-                    report.append(scan[j-1])
-                    report.append(scan[j])
-                    version = etalon[i].split(";")
-                    report.append(version[1])
-                    break
+        index = etalon[i].split(";")
+        model = index[0]
+        version = index[1]
+        for j in range(1, len(scan)):
+            if model in scan[j] or scan[j] in model:
+                report.append(scan[j-1])
+                report.append(scan[j])
+                report.append(version)
+                break
     return report
 
 
@@ -234,7 +207,7 @@ def checkdefaultpasswords(parsedvoips, path):
     buttonsleep = 5
     requestsleep = 10
     # default passwords for the Grandstreams
-    defaultpasses = {'Grandstream': ['user', '123', 'admin', 'admin']}
+    defaultpasses = {'Grandstream': ['user', '123', 'admin', 'admin'], 'Cisco': ['cisco', 'cisco']}
     for i in range(0, len(parsedvoips), 2):
         # requesting main params for the request
         url, headers, cookies = prepareGSheader(parsedvoips[i + 1])
@@ -297,6 +270,50 @@ def checkdefaultpasswords(parsedvoips, path):
                     web.close()
                     web.quit()
                     continue
+        if "Cisco" in parsedvoips[i]:
+            for j in range(0, len(defaultpasses['Cisco']), 2):
+                try:
+                    web = webdriver.Chrome(executable_path=path)
+                    web.get(url)
+                    time.sleep(requestsleep)
+                    inputs = web.find_elements(By.TAG_NAME, "input")
+                    if len(inputs) == 7:
+                        inputs[3].clear()
+                        inputs[3].send_keys(defaultpasses['Cisco'][j])
+                        time.sleep(fillsleep)
+                        inputs[4].clear()
+                        inputs[4].send_keys(defaultpasses['Cisco'][j+1])
+                        time.sleep(fillsleep)
+                        inputs[5].send_keys(Keys.ENTER)
+                        time.sleep(buttonsleep)
+                    web.close()
+                    web.quit()
+                    texts = web.find_elements(By.TAG_NAME, "b")
+                    if texts is None or texts == []:
+                        links = web.find_elements(By.TAG_NAME, "a")
+                        if links is None or links == []:
+                            web.close()
+                            web.quit()
+                            continue
+                    for text in texts:
+                        if "MAC" in text.text or "SETTINGS" in text.text:
+                            vulns.append(parsedvoips[i])
+                            vulns.append(parsedvoips[i + 1])
+                            vulns.append(defaultpasses['Grandstream'][j])
+                            vulns.append(defaultpasses['Grandstream'][j + 1])
+                            break
+                    for link in links:
+                        if "logout" in link.text or "Logout" in link.text or "Логаут" in link.text:
+                            vulns.append(parsedvoips[i])
+                            vulns.append(parsedvoips[i + 1])
+                            vulns.append(defaultpasses['Grandstream'][j])
+                            vulns.append(defaultpasses['Grandstream'][j + 1])
+                            break
+                    web.close()
+                    web.quit()
+                except:
+                    web.close()
+                    web.quit()
     return vulns
 
 def main(gcsvfile, checkip, system, output, path):

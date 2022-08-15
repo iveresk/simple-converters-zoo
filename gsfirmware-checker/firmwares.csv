@@ -1,9 +1,10 @@
+2140;Release 7.0.1;;
 GWN7000;1.0.9.6 Release Notes;;
 GWN7600;1.0.9.13 Release Notes;;
 GWN7600LR;1.0.9.13  Release Notes;;
 GWN7610;1.0.9.13  Release Notes;;
 GWN7630;1.0.9.12  Release Notes;;
-GWN7600/7610;1.0.9.4 deployment;;
+GWN7600GWN7610;1.0.9.4 deployment;;
 GWN7600;1.0.21.7 Release Notes;;
 GWN7600LR;1.0.21.7 Release Notes;;
 GWN7602;1.0.19.36 Release Notes;;
@@ -30,12 +31,27 @@ UCM6308A;1.0.15.13 Release Notes;;
 UCM6202;1.0.20.44 Release Notes;;
 UCM6204;1.0.20.44 Release Notes;;
 UCM6208;1.0.20.44 Release Notes;;
-GRP2601/PGRP2602/P/WGRP2603/PGRP2604/P;1.0.3.63 Release Notes;;1.0.3.67BETA
-GRP2612/P/WGRP2613GRP2614GRP2615GRP2616GRP2624GRP2634GRP2670;1.0.7.33 Release Notes;;1.0.9.22BETA
-GXP1610/GXP1615GXP1620/GXP1625GXP1628GXP1630;1.0.7.27 Release Notes;;
-GXP1780/GXP1782GXP1760W;1.0.1.123 Release Notes;;
-GXP2130;1.0.11.57 Release Notes;For HTTP upgrading, please use this path:/gxp21xx/1_0_11_57 
-GXP2130 hardware version 4.0AGXP2135 hardware version 3.0A and 3.1A;
+GRP2601;1.0.3.63 Release Notes;;1.0.3.67BETA
+PGRP2602;1.0.3.63 Release Notes;;1.0.3.67BETA
+WGRP2603;1.0.3.63 Release Notes;;1.0.3.67BETA
+PGRP2604;1.0.3.63 Release Notes;;1.0.3.67BETA
+GRP2612;1.0.7.33 Release Notes;;1.0.9.22BETA
+WGRP2613;1.0.7.33 Release Notes;;1.0.9.22BETA
+GRP2614;1.0.7.33 Release Notes;;1.0.9.22BETA
+GRP2615;1.0.7.33 Release Notes;;1.0.9.22BETA
+GRP2616;1.0.7.33 Release Notes;;1.0.9.22BETA
+GRP2624;1.0.7.33 Release Notes;;1.0.9.22BETA
+GRP2634;1.0.7.33 Release Notes;;1.0.9.22BETA
+GRP2670;1.0.7.33 Release Notes;;1.0.9.22BETA
+GXP1610;1.0.7.27 Release Notes;;
+GXP1615;1.0.7.27 Release Notes;;
+GXP1620;1.0.7.27 Release Notes;;
+GXP1625;1.0.7.27 Release Notes;;
+GXP1628;1.0.7.27 Release Notes;;
+GXP1630;1.0.7.27 Release Notes;;
+GXP1780;1.0.1.123 Release Notes;;
+GXP1782GXP1760W;1.0.1.123 Release Notes;;
+GXP2130;1.0.11.57 Release Notes;
 GXP2135;1.0.11.57 Release Notes;;
 GXP2140;1.0.11.57 Release Notes;;
 GXP2160;1.0.11.57 Release Notes;;
@@ -46,14 +62,13 @@ DP752DP750DP760;1.0.17.4 Release Notes;;
 IPVT10;1.0.6.13 Release Notes;;
 GVC3200GVC3202;1.0.3.69 Release Notes
 GVC3210;1.0.1.76 Release Notes
-GVC3210 firmware 1.0.1.51+ is required to be used with IPVideoTalk service.";;
 GVC3212;1.0.1.6;;
 GVC3220;1.0.1.37 Release Notes;;
 GAC2500;1.0.3.42 Release Notes;;
 GXV3380;1.0.3.29 Release Notes;;
 GXV3370;1.0.3.38 Release Notes;;
 GXV3350;1.0.3.40 Release Notes;;
-GXW-4008;1.4.1.5 Release Notes;;
+GXW4008;1.4.1.5 Release Notes;;
 GBX20;1.0.1.3;;
 HT801;1.0.41.2 Release Notes;;
 HT802;1.0.41.2 Release Notes;;
@@ -67,10 +82,12 @@ GXW4224V1;1.0.23.2 Release Notes;;
 GXW4232V1;1.0.23.2 Release Notes;;
 GXW4248V1;1.0.23.2 Release Notes;;
 GXW4216V2NEW;1.0.3.4
-GXW4224 V2NEW;1.0.3.4
-GXW4232 V2NEW;1.0.3.4
-GXW4248 V2NEW;1.0.3.4
-GXW4501GXW4502GXW4504;1.0.1.7 Release Notes;;
+GXW4224;1.0.3.4
+GXW4232;1.0.3.4
+GXW4248;1.0.3.4
+GXW4501;1.0.1.7 Release Notes;;
+GXW4502;1.0.1.7 Release Notes;;
+GXW4504;1.0.1.7 Release Notes;;
 GSC3570;1.0.5.21 Release Notes;;
 GSC3505;1.0.1.18 Release Notes;;
 GSC3510;1.0.1.18 Release Notes;;
@@ -78,12 +95,13 @@ GDS3702;1.0.3.11 Release Notes;;
 GDS3705;1.0.3.11 Release Notes;;
 GDS3710;1.0.11.18 Release Notes;;
 GSC3620;1.0.7.5  Release Notes;;
-GSC3610/GSC3615;1.0.3.8 Release Notes;;
+GSC3610;1.0.3.8 Release Notes;;
+GSC3615;1.0.3.8 Release Notes;;
 GXV3500;1.0.3.14 Release Notes;;1.0.3.17BETA
 BT101;1.1.0.26;;
 BT102;1.1.0.26;;
-HT286 (Rev. 2.0);1.0.7.19;;
-HT286 (Rev. 3.0);1.1.0.45;;
+HT286;1.0.7.19;;
+HT286;1.1.0.45;;
 HT386;1.0.3.96;;
 HT488;1.0.3.96;;
 HT496;1.0.3.96;;
@@ -91,8 +109,9 @@ HT486;1.1.0.45;;
 GXW4024;1.0.12.4;;
 BT200/201;1.2.5.3;;
 GXP2010;1.2.5.3;;
-GXP2020;;;
-GXE5024GXE5028;1.0.1.63;"1.0.1.63
+GXP2020;1.2.5.3;;
+GXE5024;1.0.1.63;
+GXE5028;1.0.1.63;
 GXP280;1.2.5.3;;
 GXP285;1.2.5.3;;
 GXP1200;1.2.5.3;;
@@ -109,26 +128,26 @@ GXV3175v2;1.0.1.55 Release Notes;;
 GXV3240;1.0.3.227 Release Notes;;
 GXV3275;1.0.3.227 Release Notes;;
 GXV300x;1.2.3.7;;
-GXV3501/GXV3504;1.0.4.38;;
+GXV3501;1.0.4.38;;
+GXV3504;1.0.4.38;;
 GXV3601;1.0.4.38;;
-GXV3601_HD;1.0.4.56;;
-GXV3601_LL;1.0.4.38;;
-GXV3610_HD/FHD;1.0.3.23 Release Notes;;
-GXV3611_IR_HD;1.0.3.23 Release Notes;;
-GXV3611_LL;1.0.4.38;;
-GXV3611_HD;1.0.4.56;;
-GXV3615(PoE or Wi-Fi);1.0.4.38;;
-GXV3615WP_HD;1.0.1.96 Release Notes;;
-GXV3651_FHD;1.0.1.93;;
+GXV3601;1.0.4.56;;
+GXV3601;1.0.4.38;;
+GXV3610;1.0.3.23 Release Notes;;
+GXV3611;1.0.3.23 Release Notes;;
+GXV3615;1.0.4.38;;
+GXV3615;1.0.1.96 Release Notes;;
+GXV3651;1.0.1.93;;
 GVR3550;1.0.1.31 Release Notes;;
 GVR3552;1.0.1.31 Release Notes;;
-GXV3662_HD;1.0.1.93 Release Notes;;
-GXV3662_FHD;1.0.1.93 Release Notes;;
-GXV3672_HD;1.0.1.93 Release Notes;;
-GXV3672_FHD;1.0.1.93 Release Notes;;
-GXV3672_HD_36/FHD_36;1.0.3.23 Release Notes;;
-GXV3674_HD/FHD_VF;1.0.3.23 Release Notes;;
-DP71x;1.0.0.33 Release Notes;;
+GXV3662;1.0.1.93 Release Notes;;
+GXV3672;1.0.1.93 Release Notes;;
+DP710;1.0.0.33 Release Notes;;
+DP711;1.0.0.33 Release Notes;;
+DP712;1.0.0.33 Release Notes;;
+DP713;1.0.0.33 Release Notes;;
+DP714;1.0.0.33 Release Notes;;
+DP715;1.0.0.33 Release Notes;;
 GXP1100;1.0.8.6 Release Notes;;
 GXP1105;1.0.8.6 Release Notes;;
 GXP1160;1.0.8.9 Release Notes;;
@@ -136,83 +155,151 @@ GXP1165;1.0.8.9 Release Notes;;
 GXP1400;1.0.8.9 Release Notes;;
 GXP1405;1.0.8.9 Release Notes;;
 GXP1450;1.0.8.9 Release Notes;;
-GXW4004;1.0.16.2 Release Notes;HTTP Upgrade Server:;
-GXW4008;1.0.16.2 Release Notes;HTTP Upgrade Server:;
-HT502;1.0.16.2 Release Notes;HTTP Upgrade Server:;
-HT503;1.0.16.3 Release Notes;HTTP Upgrade Server:;
-HT701;1.0.10.3 Release Notes;HTTP Upgrade Server:;
-HT702;1.0.10.3 Release Notes;HTTP Upgrade Server:;
-HT704;1.0.10.3 Release Notes;HTTP Upgrade Server:;
+GXW4004;1.0.16.2 Release Notes;;
+GXW4008;1.0.16.2 Release Notes;;
+HT502;1.0.16.2 Release Notes;;
+HT503;1.0.16.3 Release Notes;
+HT701;1.0.10.3  Release Notes;;
+HT702;1.0.10.3  Release Notes;;
+HT704;1.0.10.3  Release Notes;;
 UCM6102;1.0.18.18 Release Notes;;
 UCM6104;1.0.18.18 Release Notes;;
 UCM6108;1.0.18.18 Release Notes;;
 UCM6116;1.0.18.18 Release Notes;;
-Catalyst 8300 Series;Release Cupertino 17.7.9 
-ISR 4000 Series;Release Bengaluru 17.4.9
-ISR 1000 Series;Release Bengaluru 17.6.1
-NCS 500 Series;Release Cupertino 17.7.9 
-NCS 5000 Series;Release 7.5.2
-NCS 5500 Series;Release 7.2.1
-NCS 5700 Series;Release 7.0.2
-Catalyst 8500 Series;Release 17.4.1a
-ASR 900 Series;Release 3.5.0S.
-ASR 1000 Series;Release Amsterdam 17.3.9
-8000 Series;Release 7.7.9
-NCS 500 Series;Release Cupertino 17.7.9  
-NCS 5500 Series;Release 7.2.1
-NCS 5700 Series;Release 7.0.2
-ASR 9000 Series;Release 7.7.1 
-ASR 900 Serie;Release 3.6(0)S
-Catalyst IR1100 Rugged;Release Cisco IOS XE 17.3.5)
-Catalyst IR1800 Rugged;Release Cisco IOS XE 17.3.5)
-Catalyst IR8100 Heavy Duty;Release Cisco IOS XE 17.3.5)
-Catalyst IR8300 Rugged;Release Cisco IOS XE 17.3.5)
-IOS XRv 9000;Release 7.3.1
-Catalyst 8000V;Release Bengaluru 17.6.9 
-CSR 1000V;Release Amsterdam 17.2.9 
-ISR 1000 Series;Release Amsterdam 17.1.9
-ISR 900 Series;Release 15.9(3)M 
-Catalyst 9400 Series;Release Cupertino 17.9.9  
-Catalyst 9300 Series;Release Cupertino 17.9.9  
-Catalyst 9200 Series;Release Cupertino 17.9.9  
-Catalyst 3850 Series;Release Gibraltar 16.12.9 
-Catalyst 3650 Series;Release Gibraltar 16.12.9 
-Catalyst 2960-X/XR Series;Release 15.2(5)E 
-Catalyst 2960-L Series;Release 15.2(5)E 
-Catalyst 9500 Series;Release XE Cupertino 17.9.9 
-Catalyst 9600 Series;Release XE Cupertino 17.9.9 
-Catalyst 3850 Fiber Series;Release 16.12.9
-Catalyst 6500 Series;Release 15.5(1)SY 
-Catalyst 6800 Series;Release 15.1SY 
-Catalyst 4500-X Series;Release 3.11.9E
-Cisco IP Phone 8865;Release 8.5(1)
-Cisco IP Phone 8861;Release 8.5(1)
-Cisco IP Phone 8851;Release 8.5(1)
-Cisco IP Phone 8845;Release 8.5(1)
-IP Phone 7811;Release 12.8(1)SR1  
-IP Phone 7821;Release 12.8(1)SR1   
-IP Phone 7841;Release 12.8(1)SR1   
-IP Phone 7861;Release 12.8(1)SR1   
-Cisco Unified IP Phone 7975G;Release 9.4(2)SR4
-Cisco Unified IP Phone 7965G;Release 9.4(2)
-Aironet 1810W Series;Release 8.2.111.0
-Cisco Unified IP Phone 7931G;Release 8.3(1) 
-Cisco Unified IP Phone 7962G;Release 9.2(3) firmware
-Cisco Unified SIP Phone 3905;Release 9.2(2) 
-Cisco Unified IP Phone 8961;Release 9.2(4)
-Cisco Unified IP Phone 8945;Release 9.4(2)SR2 
-ASA 5506;Release 9.16.2
-ASA 5508;Release 1.1.14 
-ASA 5516;Release 9.12.4
-ASA 5525;Release 9.12.4
-ASA 5545;Release 9.12.4
-ASA 5505;Release 9.2.4
-ASA 5510;Release 8.2
-ASA 5512;Release 9.12.4
-ASA 5520;Release 9.4
-ASA 5540;Release 9.1.6
-ASA5545;Release 9.14.1
-Firepower 2110;Release 7.0.1 
-Firepower 2120;Release 7.0.1 
-Firepower 2130;Release 7.0.1 
-Firepower 2140;Release 7.0.1 
+8300;17.7.9
+C8300-2N2S-4T2X;17.7.9
+C8300-2N2S-6T;17.7.9
+C8300-1N1S-4T2X;Release Cupertino 17.7.9
+C8300-1N1S-6T;Release Cupertino 17.7.9
+ISR4000;Release Bengaluru 17.4.9
+ISR4221;Release Bengaluru 17.4.9
+ISR4321;Release Bengaluru 17.4.9
+ISR4331;Release Bengaluru 17.4.9
+ISR4351;Release Bengaluru 17.4.9
+ISR4431;Release Bengaluru 17.4.9
+ISR4451;Release Bengaluru 17.4.9
+ISR4461;Release Bengaluru 17.4.9
+ISR1000;Release Bengaluru 17.6.1
+NCS500;Release Cupertino 17.7.9
+NCS520;Release Cupertino 17.7.9
+NCS540;Release Cupertino 17.7.9
+NCS560;Release Cupertino 17.7.9
+NCS5000;Release 7.5.2
+NCS5001;Release 7.5.2
+NCS5002;Release 7.5.2
+NCS5011;Release 7.5.2
+NCS5500;Release 7.2.1
+NCS5700;Release 7.0.2
+8500;Release 17.4.1a
+8510;Release 17.4.1a
+8530;Release 17.4.1a
+8540;Release 17.4.1a
+ASR1000;Release Amsterdam 17.3.9
+8000;Release 7.7.9
+8100;Release 7.7.9
+8200;Release 7.7.9
+NCS5500;Release 7.2.1
+NCS5700;Release 7.0.2
+ASR9001;Release 7.7.1
+ASR9006;Release 7.7.1
+ASR9010;Release 7.7.1
+ASR9901;Release 7.7.1
+ASR9902;Release 7.7.1
+ASR9903;Release 7.7.1
+ASR9904;Release 7.7.1
+ASR9906;Release 7.7.1
+ASR9910;Release 7.7.1
+ASR9912;Release 7.7.1
+ASR9922;Release 7.7.1
+ASR900;Release 3.6(0)S
+ASR910;Release 3.6(0)S
+ASR920;Release 3.6(0)S
+ASR930;Release 3.6(0)S
+ASR940;Release 3.6(0)S
+ASR950;Release 3.6(0)S
+ASR960;Release 3.6(0)S
+ASR970;Release 3.6(0)S
+ASR980;Release 3.6(0)S
+ASR980;Release 3.6(0)S
+IR1100 Rugged;Release IOS XE 17.3.5)
+IR1800 Rugged;Release IOS XE 17.3.5)
+IR8100 Heavy Duty;Release IOS XE 17.3.5)
+IR8300 Rugged;Release IOS XE 17.3.5)
+XRv9000;Release 7.3.1
+8000V;Release Bengaluru 17.6.9 
+CSR1000V;Release Amsterdam 17.2.9
+ISR1000;Release Amsterdam 17.1.9
+ISR900;Release 15.9(3)M
+9400;Release Cupertino 17.9.9  
+9300;Release Cupertino 17.9.9  
+9200;Release Cupertino 17.9.9  
+3850;Release Gibraltar 16.12.9 
+3650;Release Gibraltar 16.12.9 
+2960;Release 15.2(5)E
+2960;Release 15.2(5)E
+9500;Release XE Cupertino 17.9.9 
+9600;Release XE Cupertino 17.9.9 
+3850 Fiber;Release 16.12.9
+6500;Release 15.5(1)SY 
+6800;Release 15.1SY 
+4500;Release 3.11.9E
+4510;Release 3.11.9E
+4520;Release 3.11.9E
+4530;Release 3.11.9E
+4540;Release 3.11.9E
+4550;Release 3.11.9E
+4560;Release 3.11.9E
+4570;Release 3.11.9E
+4580;Release 3.11.9E
+4590;Release 3.11.9E
+8865;Release 8.5(1)
+8861;Release 8.5(1)
+8851;Release 8.5(1)
+8845;Release 8.5(1)
+7811;Release 12.8(1)SR1
+7821;Release 12.8(1)SR1
+7841;Release 12.8(1)SR1
+7861;Release 12.8(1)SR1
+7975G;Release 9.4(2)SR4
+7965G;Release 9.4(2)
+1810W;Release 8.2.111.0
+7931G;Release 8.3(1)
+7962G;Release 9.2(3) firmware
+3905;Release 9.4.1(2)
+8961;Release 9.2(4)
+8945;Release 9.4(2)SR2
+5506;Release 9.16.2
+5508;Release 1.1.14
+5516;Release 9.12.4
+5525;Release 9.12.4
+5545;Release 9.12.4
+5505;Release 9.2.4
+5510;Release 8.2
+5512;Release 9.12.4
+5520;Release 9.4
+5540;Release 9.1.6
+5545;Release 9.14.1
+2110;Release 7.0.1
+2120;Release 7.0.1
+2130;Release 7.0.1
+2140;Release 7.0.1
+SPA112;Release 1.7.1
+SPA502;Release 7.6(2)
+SPA504;Release 7.6(2)
+SPA506;Release 7.6(2)
+SPA508;Release 7.6(2)
+SPA509;Release 7.6(2)
+SPA512;Release 7.6(2)
+SPA514;Release 7.6(2)
+SPA525;Release 7.6(2)
+SPA303;Release 7.6(2)
+SF300;Release 1.4.11.2
+9951;7.1(5)
+8945;7.1(5)
+6921;9.4(1)
+6961;9.4(1)
+3905;9.4(1)
+6901;7.1(5)
+6945;7.1(5)
+7962;9.4(1)
+7942;9.4(1)
