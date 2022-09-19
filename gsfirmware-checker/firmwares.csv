@@ -1,3 +1,18 @@
+DAG1000;2.19.10.13;;
+UC2000;2.19.10.13;;
+MTG200;2.19.10.13;;
+MTG1000;2.19.10.13;;
+MTG2000;2.19.10.13;;
+MTG3000;2.19.10.13;;
+A810;2.19.10.13;;
+DP88;2.19.10.13;;
+DP85;2.19.10.13;;
+DP83;2.19.10.13;;
+DP82;2.19.10.13;;
+DP81;2.19.10.13;;
+DPA;2.19.10.13;;
+DP70;2.19.10.13;;
+DP90;2.19.10.13;;
 2140;Release 7.0.1;;
 GWN7000;1.0.9.6 Release Notes;;
 GWN7600;1.0.9.13 Release Notes;;
@@ -43,12 +58,12 @@ GRP2616;1.0.7.33 Release Notes;;1.0.9.22BETA
 GRP2624;1.0.7.33 Release Notes;;1.0.9.22BETA
 GRP2634;1.0.7.33 Release Notes;;1.0.9.22BETA
 GRP2670;1.0.7.33 Release Notes;;1.0.9.22BETA
-GXP1610;1.0.7.27 Release Notes;;
-GXP1615;1.0.7.27 Release Notes;;
-GXP1620;1.0.7.27 Release Notes;;
-GXP1625;1.0.7.27 Release Notes;;
-GXP1628;1.0.7.27 Release Notes;;
-GXP1630;1.0.7.27 Release Notes;;
+GXP1610;1.0.7.33 Release Notes;;
+GXP1615;1.0.7.33 Release Notes;;
+GXP1620;1.0.7.33 Release Notes;;
+GXP1625;1.0.7.33 Release Notes;;
+GXP1628;1.0.7.33 Release Notes;;
+GXP1630;1.0.7.33 Release Notes;;
 GXP1780;1.0.1.123 Release Notes;;
 GXP1782GXP1760W;1.0.1.123 Release Notes;;
 GXP2130;1.0.11.57 Release Notes;
@@ -68,7 +83,8 @@ GAC2500;1.0.3.42 Release Notes;;
 GXV3380;1.0.3.29 Release Notes;;
 GXV3370;1.0.3.38 Release Notes;;
 GXV3350;1.0.3.40 Release Notes;;
-GXW4008;1.4.1.5 Release Notes;;
+GXV4008;1.4.1.5 Release Notes;;
+GXV-4008;1.4.1.5 Release Notes;;
 GBX20;1.0.1.3;;
 HT801;1.0.41.2 Release Notes;;
 HT802;1.0.41.2 Release Notes;;
@@ -77,14 +93,12 @@ HT813;1.0.13.3 Release Notes;;
 HT814;1.0.41.2 Release Notes;;
 HT818;1.0.41.2 Release Notes;;
 GXW410x;1.4.1.5 Release Notes;;
-GXW4216V1;1.0.23.2 Release Notes;;
-GXW4224V1;1.0.23.2 Release Notes;;
-GXW4232V1;1.0.23.2 Release Notes;;
-GXW4248V1;1.0.23.2 Release Notes;;
+GXW4216;1.0.23.2 Release Notes;;
+GXW4224;1.0.23.2 Release Notes;;
+GXW4232;1.0.23.2 Release Notes;;
+GXW4248;1.0.23.2 Release Notes;;
 GXW4216V2NEW;1.0.3.4
-GXW4224;1.0.3.4
-GXW4232;1.0.3.4
-GXW4248;1.0.3.4
+HT-502;1.0.16.2;;
 GXW4501;1.0.1.7 Release Notes;;
 GXW4502;1.0.1.7 Release Notes;;
 GXW4504;1.0.1.7 Release Notes;;
@@ -157,6 +171,7 @@ GXP1405;1.0.8.9 Release Notes;;
 GXP1450;1.0.8.9 Release Notes;;
 GXW4004;1.0.16.2 Release Notes;;
 GXW4008;1.0.16.2 Release Notes;;
+GXW-4008;1.0.16.2 Release Notes;;
 HT502;1.0.16.2 Release Notes;;
 HT503;1.0.16.3 Release Notes;
 HT701;1.0.10.3  Release Notes;;
@@ -188,8 +203,6 @@ NCS5000;Release 7.5.2
 NCS5001;Release 7.5.2
 NCS5002;Release 7.5.2
 NCS5011;Release 7.5.2
-NCS5500;Release 7.2.1
-NCS5700;Release 7.0.2
 8500;Release 17.4.1a
 8510;Release 17.4.1a
 8530;Release 17.4.1a
@@ -238,8 +251,7 @@ ISR900;Release 15.9(3)M
 2960;Release 15.2(5)E
 2960;Release 15.2(5)E
 9500;Release XE Cupertino 17.9.9 
-9600;Release XE Cupertino 17.9.9 
-3850 Fiber;Release 16.12.9
+9600;Release XE Cupertino 17.9.9
 6500;Release 15.5(1)SY 
 6800;Release 15.1SY 
 4500;Release 3.11.9E
@@ -283,7 +295,7 @@ ISR900;Release 15.9(3)M
 2120;Release 7.0.1
 2130;Release 7.0.1
 2140;Release 7.0.1
-SPA112;Release 1.7.1
+SPA112;Release 1.4.1
 SPA502;Release 7.6(2)
 SPA504;Release 7.6(2)
 SPA506;Release 7.6(2)
@@ -293,6 +305,7 @@ SPA512;Release 7.6(2)
 SPA514;Release 7.6(2)
 SPA525;Release 7.6(2)
 SPA303;Release 7.6(2)
+SPA3102;5.2.13
 SF300;Release 1.4.11.2
 9951;7.1(5)
 8945;7.1(5)
@@ -303,3 +316,4 @@ SF300;Release 1.4.11.2
 6945;7.1(5)
 7962;9.4(1)
 7942;9.4(1)
+186; 3.2(4)

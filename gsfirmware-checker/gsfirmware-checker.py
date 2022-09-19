@@ -90,6 +90,8 @@ def calculateversions(firmware, basecve):
         for ii in range(0, len(firmwarespace)):
             for j in range(0, len(basecve), 2):
                 basespace = basecve[j].split(";")
+                if firmwarespace[ii] == '' or firmwarespace[ii] is None:
+                    break
                 if firmwarespace[ii] in basespace[1]:
                     if firmware[i+1] <= basecve[j+1]:
                         res.append(firmware[i])
@@ -205,11 +207,9 @@ def checkdefaultpasswords(parsedvoips, path):
     vulns = []
     fillsleep = 3
     buttonsleep = 5
-    requestsleep = 10
-    web = webdriver.Chrome(executable_path=path)
-    web.set_page_load_timeout(20)
+    requestsleep = 20
     # default passwords for the Grandstreams
-    defaultpasses = {'Grandstream': ['user', '123', 'admin', 'admin'], 'Cisco': ['cisco', 'cisco'], 'Linksys': ['cisco', 'cisco']}
+    defaultpasses = {'Grandstream': ['user', '123', 'admin', 'admin'], 'Cisco': ['cisco', 'cisco', 'admin', 'admin'], 'Linksys': ['cisco', 'cisco'], 'DAG': ['admin', 'admin'], 'FPBX': ['admin', 'admin'], 'Asterix': ['admin', 'admin']}
     for i in range(0, len(parsedvoips), 2):
         # requesting main params for the request
         url, headers, cookies = prepareGSheader(parsedvoips[i + 1])
@@ -245,7 +245,7 @@ def checkdefaultpasswords(parsedvoips, path):
                         time.sleep(fillsleep)
                         button = web.find_element(By.TAG_NAME, "input")
                         button.send_keys(Keys.ENTER)
-                        time.sleep(buttonsleep)
+                        time.sleep(requestsleep)
                     texts = web.find_elements(By.TAG_NAME, "b")
                     links = web.find_elements(By.TAG_NAME, "a")
                     for text in texts:
@@ -260,7 +260,7 @@ def checkdefaultpasswords(parsedvoips, path):
                                 vulns.append(defaultpasses['Cisco'][j + 1])
                             break
                     for link in links:
-                        if "logout" in link.text or "Logout" in link.text or "Логаут" in link.text or "Lan Status" in link.text:
+                        if "logout" in link.text or "Logout" in link.text or "Логаут" in link.text or "Lan Status" in link.text or "Log Out" in link.text:
                             vulns.append(parsedvoips[i])
                             vulns.append(parsedvoips[i + 1])
                             if "Grandstream" in parsedvoips[i]:
@@ -293,7 +293,7 @@ def checkdefaultpasswords(parsedvoips, path):
                         inputs[4].send_keys(defaultpasses['Cisco'][j+1])
                         time.sleep(fillsleep)
                         inputs[5].send_keys(Keys.ENTER)
-                        time.sleep(buttonsleep)
+                        time.sleep(requestsleep)
                         loggedin = True
                     links_before_login = web.find_elements(By.TAG_NAME, "a")
                     if links_before_login is None or links_before_login == []:
@@ -319,7 +319,7 @@ def checkdefaultpasswords(parsedvoips, path):
                                 vulns.append(defaultpasses['Cisco'][j + 1])
                             break
                     for link in links:
-                        if "logout" in link.text or "Logout" in link.text or "Логаут" in link.text or "Lan Status" in link.text:
+                        if "logout" in link.text or "Logout" in link.text or "Логаут" in link.text or "Lan Status" in link.text or "Log Out" in link.text:
                             vulns.append(parsedvoips[i])
                             vulns.append(parsedvoips[i + 1])
                             if "Grandstream" in parsedvoips[i]:
@@ -328,6 +328,64 @@ def checkdefaultpasswords(parsedvoips, path):
                             if "Cisco" in parsedvoips[i] or "Linksys" in parsedvoips[i]:
                                 vulns.append(defaultpasses['Cisco'][j])
                                 vulns.append(defaultpasses['Cisco'][j + 1])
+                            break
+                    web.close()
+                    web.quit()
+                except:
+                    web.close()
+                    web.quit()
+                    continue
+        if "DAG" in parsedvoips[i]:
+            for j in range(0, len(defaultpasses['DAG']), 2):
+                try:
+                    web = webdriver.Chrome(executable_path=path)
+                    web.set_page_load_timeout(20)
+                    web.get(url)
+                    time.sleep(requestsleep)
+                    inputs = web.find_elements(By.TAG_NAME, "input")
+                    if len(inputs) == 4 or len(inputs) == 5:
+                        inputs[1].clear()
+                        inputs[1].send_keys(defaultpasses['DAG'][j])
+                        time.sleep(fillsleep)
+                        inputs[2].clear()
+                        inputs[2].send_keys(defaultpasses['DAG'][j+1])
+                        time.sleep(fillsleep)
+                        inputs[3].send_keys(Keys.ENTER)
+                        time.sleep(requestsleep)
+                    elif len(inputs) == 3:
+                        inputs[0].clear()
+                        inputs[0].send_keys(defaultpasses['DAG'][j])
+                        time.sleep(fillsleep)
+                        inputs[1].clear()
+                        inputs[1].send_keys(defaultpasses['DAG'][j + 1])
+                        time.sleep(fillsleep)
+                        inputs[1].send_keys(Keys.ENTER)
+                        time.sleep(requestsleep)
+                    elif len(inputs) == 2:
+                        inputs[0].clear()
+                        inputs[0].send_keys(defaultpasses['DAG'][j])
+                        time.sleep(fillsleep)
+                        inputs[1].clear()
+                        inputs[1].send_keys(defaultpasses['DAG'][j + 1])
+                        time.sleep(fillsleep)
+                        button = web.find_element(By.TAG_NAME, "input")
+                        button.send_keys(Keys.ENTER)
+                        time.sleep(requestsleep)
+                    texts = web.find_elements(By.TAG_NAME, "b")
+                    links = web.find_elements(By.TAG_NAME, "a")
+                    for text in texts:
+                        if "MAC" in text.text or "SETTINGS" in text.text:
+                            vulns.append(parsedvoips[i])
+                            vulns.append(parsedvoips[i + 1])
+                            vulns.append(defaultpasses['DAG'][j])
+                            vulns.append(defaultpasses['DAG'][j + 1])
+                            break
+                    for link in links:
+                        if "logout" in link.text or "Logout" in link.text or "Логаут" in link.text or "Lan Status" in link.text or "Log Out" in link.text:
+                            vulns.append(parsedvoips[i])
+                            vulns.append(parsedvoips[i + 1])
+                            vulns.append(defaultpasses['DAG'][j])
+                            vulns.append(defaultpasses['DAG'][j + 1])
                             break
                     web.close()
                     web.quit()
