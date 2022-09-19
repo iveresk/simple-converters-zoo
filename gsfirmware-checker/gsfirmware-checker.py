@@ -209,7 +209,7 @@ def checkdefaultpasswords(parsedvoips, path):
     buttonsleep = 5
     requestsleep = 20
     # default passwords for the Grandstreams
-    defaultpasses = {'Grandstream': ['user', '123', 'admin', 'admin'], 'Cisco': ['cisco', 'cisco', 'admin', 'admin'], 'Linksys': ['cisco', 'cisco'], 'DAG': ['admin', 'admin'], 'FPBX': ['admin', 'admin'], 'Asterix': ['admin', 'admin']}
+    defaultpasses = {'Grandstream': ['user', '123', 'admin', 'admin'], 'Cisco': ['cisco', 'cisco', 'admin', 'admin'], 'Linksys': ['cisco', 'cisco', 'admin', 'admin'], 'DAG': ['admin', 'admin'], 'FPBX': ['admin', 'admin'], 'Asterix': ['admin', 'admin']}
     for i in range(0, len(parsedvoips), 2):
         # requesting main params for the request
         url, headers, cookies = prepareGSheader(parsedvoips[i + 1])
