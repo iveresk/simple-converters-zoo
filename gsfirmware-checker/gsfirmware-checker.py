@@ -209,7 +209,7 @@ def checkdefaultpasswords(parsedvoips, path):
     buttonsleep = 5
     requestsleep = 20
     # default passwords for the Grandstreams
-    defaultpasses = {'Grandstream': ['user', '123', 'admin', 'admin'], 'Cisco': ['cisco', 'cisco', 'admin', 'admin'], 'Linksys': ['cisco', 'cisco', 'admin', 'admin'], 'DAG': ['admin', 'admin'], 'FPBX': ['admin', 'admin'], 'Asterix': ['admin', 'admin']}
+    defaultpasses = {'Grandstream': ['viewer', 'viewer', 'user', '123', 'admin', 'admin'], 'Cisco': ['viewer', 'viewer', 'cisco', 'cisco', 'admin', 'admin'], 'Linksys': ['viewer', 'viewer', 'cisco', 'cisco'], 'DAG': ['viewer', 'viewer', 'admin', 'admin'], 'FPBX': ['viewer', 'viewer', 'admin', 'admin'], 'Asterix': ['viewer', 'viewer', 'admin', 'admin']}
     for i in range(0, len(parsedvoips), 2):
         # requesting main params for the request
         url, headers, cookies = prepareGSheader(parsedvoips[i + 1])
@@ -245,6 +245,12 @@ def checkdefaultpasswords(parsedvoips, path):
                         time.sleep(fillsleep)
                         button = web.find_element(By.TAG_NAME, "input")
                         button.send_keys(Keys.ENTER)
+                        time.sleep(requestsleep)
+                    elif len(inputs) == 1:
+                        inputs[0].clear()
+                        inputs[0].send_keys(defaultpasses['Grandstream'][j + 1])
+                        time.sleep(fillsleep)
+                        inputs[0].send_keys(Keys.ENTER)
                         time.sleep(requestsleep)
                     texts = web.find_elements(By.TAG_NAME, "b")
                     links = web.find_elements(By.TAG_NAME, "a")
