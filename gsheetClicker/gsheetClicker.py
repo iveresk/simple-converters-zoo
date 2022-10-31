@@ -1,13 +1,15 @@
 import sys
-
 import gspread
 import time
+from datetime import datetime
+from pytz import timezone
+from tzwhere import tzwhere
 
 
 def main(target):
     # setuping a set of parameters
-    sheet_name = "<Google Sheet's name>"
-    wks_name = "<Page Name>"
+    sheet_name = "Оперативна обстановка"
+    wks_name = "Аркуш1"
     # connecting to the Google Sheet
     try:
         sa = gspread.service_account(filename="service-account.json")
@@ -23,12 +25,14 @@ def main(target):
     wks = sh.worksheet(wks_name)
     while True:
         # checking if there is a new day started for a new cycle
-        start_time = time.localtime()
-        if start_time.tm_hour == 5 and start_time.tm_min == 51:
+        tz = tzwhere.tzwhere()
+        timeZoneObj = timezone("Europe/Kiev")
+        start_time = datetime.now(timeZoneObj)
+        if start_time.time().hour == 8 and start_time.time().minute == 51:
             center_row = 0
             center_col = 0
             cell_found = False
-            print(f'New day for GSheetClicker is Started! at {start_time.tm_hour}:{start_time.tm_min}')
+            print(f'New day for GSheetClicker is Started! at {start_time.time().hour}:{start_time.time().minute}')
             for col in range(10):
                 # missing unsupported cells
                 if col == 0:
@@ -36,7 +40,7 @@ def main(target):
                 for row in range(10):
                     if row == 0:
                         continue
-                    # missing empty cells    
+                    # missing empty cells
                     if wks.cell(row, col).value is None:
                         continue
                     if wks.cell(row, col).value == target:
@@ -47,7 +51,7 @@ def main(target):
                         break
                 if cell_found:
                     break
-            # double checking if cell is actually found and wasn't just an empty pass through        
+            # double checking if cell is actually found and wasn't just an empty pass through
             if center_col == 0 or center_row == 0:
                 print("Your cell haven't been found! Check your file Structure!\n")
                 exit(0)
@@ -60,11 +64,18 @@ def main(target):
                 cell_time = time.localtime()
                 if i < center_row:
                     continue
-                wks.update_cell(i, center_col, "✅")
-                print(f'Check was made into cell({i},{center_col}) at {cell_time.tm_hour+3}:{cell_time.tm_min}')
+                try:
+                    wks.update_cell(i, center_col, "✅")
+                except e:
+                    print(e)
+                    time.sleep(20)
+                    wks.update_cell(i, center_col, "✅")
+                except:
+                    pass
+                print(f'Check was made into cell({i},{center_col}) at {cell_time.tm_hour}:{cell_time.tm_min}')
+                print("\n Sleeping for 60 minutes")
                 if i == 28:
                     continue
-                print("\n Sleeping for 60 minutes")
                 time.sleep(3600)
         else:
             time.sleep(60)
