@@ -72,7 +72,7 @@ def main(target):
                     wks.update_cell(i, center_col, "✅")
                 except:
                     pass
-                print(f'Check was made into cell({i},{center_col}) at {cell_time.tm_hour}:{cell_time.tm_min}')
+                print(f'Check was made into cell({i},{center_col}) at {start_time.time().hour}:{start_time.time().minute}}')
                 print("\n Sleeping for 60 minutes")
                 if i == 28:
                     continue
