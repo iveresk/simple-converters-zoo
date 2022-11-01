@@ -23,10 +23,10 @@ def main(target):
     sh = sa.open(sheet_name)
     # connceting to the list
     wks = sh.worksheet(wks_name)
+    tz = tzwhere.tzwhere()
+    timeZoneObj = timezone("Europe/Kiev")
     while True:
         # checking if there is a new day started for a new cycle
-        tz = tzwhere.tzwhere()
-        timeZoneObj = timezone("Europe/Kiev")
         start_time = datetime.now(timeZoneObj)
         if start_time.time().hour == 8 and start_time.time().minute == 51:
             center_row = 0
