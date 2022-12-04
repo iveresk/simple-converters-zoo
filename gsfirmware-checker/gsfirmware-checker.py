@@ -231,6 +231,7 @@ def vulnpathcheck(parsedvoips, path, system):
                             vulns.append(parsedvoips[i])
                             vulns.append(parsedvoips[i + 1])
                             vulns.append(vuln)
+                            web.save_screenshot("/home/" + system + "/" + parsedvoips[i + 1] + ".png")
                     web.close()
                     web.quit()
                 except:
