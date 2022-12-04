@@ -7,6 +7,7 @@ import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+import pyautogui
 
 
 def printtable(firmware, regime, output):
@@ -202,8 +203,43 @@ def prepareGSheader(targetip):
     cookies = getGSsession()
     return url, headers, cookies
 
+def prepareVulnheader(targetip, vuln):
+    url = "http://" + targetip + vuln
+    headers = {'Accept': '*/*', 'Accept-Encoding': 'gzip, deflate', 'Accept-Language': 'en-US,en;q=0.5', 'Cache-Control': 'max-age=0, no-cache', 'Connection': 'keep-alive', 'Content-Length': '40', 'Content-Type': 'application/x-www-form-urlencoded', 'Host': targetip, 'Origin': 'http://'+ targetip, 'Pragma': 'no-cache', 'Referer': 'http://'+ targetip, 'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101 Firefox/91.0'}
+    cookies = getGSsession()
+    return url, headers, cookies
 
-def checkdefaultpasswords(parsedvoips, path):
+def vulnpathcheck(parsedvoips, path, system):
+    vulns = []
+    # Vulnerable paths for Web Admin Panel exploit on basic firmwares
+    # For the devices HT7XX and HT8XX series.
+    vulnpath = ["/cgi-bin/dumpsettings", "/cgi-bin/upload_cfg"]
+    vsleep = 10
+    for vuln in vulnpath:
+        for i in range(0, len(parsedvoips), 2):
+            # requesting main params for the request
+            url, headers, cookies = prepareVulnheader(parsedvoips[i + 1], vuln)
+            if "Grandstream" in parsedvoips[i]:
+                try:
+                    web = webdriver.Chrome(executable_path=path)
+                    web.set_page_load_timeout(20)
+                    web.get(url)
+                    time.sleep(vsleep)
+                    files = os.listdir("/home/" + system + "/Downloads")
+                    for fname in files:
+                        if fname.endswith('.crdownload'):
+                            vulns.append(parsedvoips[i])
+                            vulns.append(parsedvoips[i + 1])
+                            vulns.append(vuln)
+                    web.close()
+                    web.quit()
+                except:
+                    web.close()
+                    web.quit()
+                    continue
+    return vulns
+
+def checkdefaultpasswords(parsedvoips, path, system):
     vulns = []
     fillsleep = 3
     buttonsleep = 5
@@ -258,6 +294,7 @@ def checkdefaultpasswords(parsedvoips, path):
                         if "MAC" in text.text or "SETTINGS" in text.text:
                             vulns.append(parsedvoips[i])
                             vulns.append(parsedvoips[i + 1])
+                            web.save_screenshot("/home/" + system + "/" + parsedvoips[i+1] + ".png")
                             if "Grandstream" in parsedvoips[i]:
                                 vulns.append(defaultpasses['Grandstream'][j])
                                 vulns.append(defaultpasses['Grandstream'][j + 1])
@@ -269,6 +306,7 @@ def checkdefaultpasswords(parsedvoips, path):
                         if "logout" in link.text or "Logout" in link.text or "Логаут" in link.text or "Lan Status" in link.text or "Log Out" in link.text:
                             vulns.append(parsedvoips[i])
                             vulns.append(parsedvoips[i + 1])
+                            web.save_screenshot("/home/" + system + "/" + parsedvoips[i+1] + ".png")
                             if "Grandstream" in parsedvoips[i]:
                                 vulns.append(defaultpasses['Grandstream'][j])
                                 vulns.append(defaultpasses['Grandstream'][j + 1])
@@ -317,6 +355,7 @@ def checkdefaultpasswords(parsedvoips, path):
                         if "MAC" in text.text or "SETTINGS" in text.text:
                             vulns.append(parsedvoips[i])
                             vulns.append(parsedvoips[i + 1])
+                            web.save_screenshot("/home/" + system + "/" + parsedvoips[i+1] + ".png")
                             if "Grandstream" in parsedvoips[i]:
                                 vulns.append(defaultpasses['Grandstream'][j])
                                 vulns.append(defaultpasses['Grandstream'][j + 1])
@@ -328,6 +367,7 @@ def checkdefaultpasswords(parsedvoips, path):
                         if "logout" in link.text or "Logout" in link.text or "Логаут" in link.text or "Lan Status" in link.text or "Log Out" in link.text:
                             vulns.append(parsedvoips[i])
                             vulns.append(parsedvoips[i + 1])
+                            web.save_screenshot("/home/" + system + "/" + parsedvoips[i+1] + ".png")
                             if "Grandstream" in parsedvoips[i]:
                                 vulns.append(defaultpasses['Grandstream'][j])
                                 vulns.append(defaultpasses['Grandstream'][j + 1])
@@ -385,6 +425,7 @@ def checkdefaultpasswords(parsedvoips, path):
                             vulns.append(parsedvoips[i + 1])
                             vulns.append(defaultpasses['DAG'][j])
                             vulns.append(defaultpasses['DAG'][j + 1])
+                            web.save_screenshot("/home/" + system + "/" + parsedvoips[i+1] + ".png")
                             break
                     for link in links:
                         if "logout" in link.text or "Logout" in link.text or "Логаут" in link.text or "Lan Status" in link.text or "Log Out" in link.text:
@@ -392,6 +433,7 @@ def checkdefaultpasswords(parsedvoips, path):
                             vulns.append(parsedvoips[i + 1])
                             vulns.append(defaultpasses['DAG'][j])
                             vulns.append(defaultpasses['DAG'][j + 1])
+                            web.save_screenshot("/home/" + system + "/" + parsedvoips[i+1] + ".png")
                             break
                     web.close()
                     web.quit()
@@ -434,7 +476,10 @@ def main(gcsvfile, checkip, system, output, path):
         printtable(report, "2", output)
     # parsing VoIPs for pairs Model - IP
     parsedvoips = parsevoips(scan)
-    vulneredips = checkdefaultpasswords(parsedvoips, path)
+    vulnpaths = vulnpathcheck(parsedvoips, path, system)
+    if vulnpaths != []:
+        printtable(vulnpaths, "3", output)
+    vulneredips = checkdefaultpasswords(parsedvoips, path, system)
     if vulneredips != []:
         printtable(vulneredips, "3", output)
 

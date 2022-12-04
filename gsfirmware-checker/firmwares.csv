@@ -50,20 +50,20 @@ GRP2601;1.0.3.63 Release Notes;;1.0.3.67BETA
 PGRP2602;1.0.3.63 Release Notes;;1.0.3.67BETA
 WGRP2603;1.0.3.63 Release Notes;;1.0.3.67BETA
 PGRP2604;1.0.3.63 Release Notes;;1.0.3.67BETA
-GRP2612;1.0.7.33 Release Notes;;1.0.9.22BETA
-WGRP2613;1.0.7.33 Release Notes;;1.0.9.22BETA
-GRP2614;1.0.7.33 Release Notes;;1.0.9.22BETA
-GRP2615;1.0.7.33 Release Notes;;1.0.9.22BETA
-GRP2616;1.0.7.33 Release Notes;;1.0.9.22BETA
-GRP2624;1.0.7.33 Release Notes;;1.0.9.22BETA
-GRP2634;1.0.7.33 Release Notes;;1.0.9.22BETA
-GRP2670;1.0.7.33 Release Notes;;1.0.9.22BETA
-GXP1610;1.0.7.33 Release Notes;;
-GXP1615;1.0.7.33 Release Notes;;
-GXP1620;1.0.7.33 Release Notes;;
-GXP1625;1.0.7.33 Release Notes;;
-GXP1628;1.0.7.33 Release Notes;;
-GXP1630;1.0.7.33 Release Notes;;
+GRP2612;1.0.9.22 Release Notes;;1.0.9.22BETA
+WGRP2613;1.0.9.22 Release Notes;;1.0.9.22BETA
+GRP2614;1.0.9.22 Release Notes;;1.0.9.22BETA
+GRP2615;1.0.9.22 Release Notes;;1.0.9.22BETA
+GRP2616;1.0.9.22 Release Notes;;1.0.9.22BETA
+GRP2624;1.0.9.22 Release Notes;;1.0.9.22BETA
+GRP2634;1.0.9.22 Release Notes;;1.0.9.22BETA
+GRP2670;1.0.9.22 Release Notes;;1.0.9.22BETA
+GXP1610;1.0.7.49 Release Notes;;
+GXP1615;1.0.7.49 Release Notes;;
+GXP1620;1.0.7.49 Release Notes;;
+GXP1625;1.0.7.49 Release Notes;;
+GXP1628;1.0.7.49 Release Notes;;
+GXP1630;1.0.7.49 Release Notes;;
 GXP1780;1.0.1.123 Release Notes;;
 GXP1782GXP1760W;1.0.1.123 Release Notes;;
 GXP2130;1.0.11.57 Release Notes;
@@ -86,18 +86,21 @@ GXV3350;1.0.3.40 Release Notes;;
 GXV4008;1.4.1.5 Release Notes;;
 GXV-4008;1.4.1.5 Release Notes;;
 GBX20;1.0.1.3;;
-HT801;1.0.41.2 Release Notes;;
-HT802;1.0.41.2 Release Notes;;
-HT812;1.0.41.2 Release Notes;;
+HT704;1.0.10.3 Release Notes;;
+HT801;1.0.41.5 Release Notes;;
+HT802;1.0.41.5 Release Notes;;
+HT812;1.0.41.5 Release Notes;;
 HT813;1.0.13.3 Release Notes;;
 HT814;1.0.41.2 Release Notes;;
 HT818;1.0.41.2 Release Notes;;
 GXW410x;1.4.1.5 Release Notes;;
-GXW4216;1.0.23.2 Release Notes;;
-GXW4224;1.0.23.2 Release Notes;;
-GXW4232;1.0.23.2 Release Notes;;
-GXW4248;1.0.23.2 Release Notes;;
-GXW4216V2NEW;1.0.3.4
+GXW4216;1.0.23.5 Release Notes;;
+GXW4224;1.0.23.5 Release Notes;;
+GXW4232;1.0.23.5 Release Notes;;
+GXW4248;1.0.23.5 Release Notes;;
+GXW4216V2;1.0.7.2
+GXW4224V2;1.0.7.2
+GXW4232V2;1.0.7.2
 HT-502;1.0.16.2;;
 GXW4501;1.0.1.7 Release Notes;;
 GXW4502;1.0.1.7 Release Notes;;
@@ -174,9 +177,9 @@ GXW4008;1.0.16.2 Release Notes;;
 GXW-4008;1.0.16.2 Release Notes;;
 HT502;1.0.16.2 Release Notes;;
 HT503;1.0.16.3 Release Notes;
-HT701;1.0.10.3  Release Notes;;
-HT702;1.0.10.3  Release Notes;;
-HT704;1.0.10.3  Release Notes;;
+HT701V2;1.0.10.3  Release Notes;;
+HT702V2;1.0.10.3  Release Notes;;
+HT704V2;1.0.10.3  Release Notes;;
 UCM6102;1.0.18.18 Release Notes;;
 UCM6104;1.0.18.18 Release Notes;;
 UCM6108;1.0.18.18 Release Notes;;
