@@ -14,7 +14,7 @@ Simple censys search tool by 1vere$k.
  ## Usage
 
  ```
- python3 censys_search.py -q "<Enter a query in Censys JSON format>" OPTIONAL[-p <pages_number>]
+ python3 censys_search.py -q "<Enter a query in Censys JSON format>" OPTIONAL[-p <pages_number> -o <output_file.txt>] 
 
  Default pages number equals 10. Every page = 200 IPs.
 

@@ -1,0 +1,11 @@
+# Excluding evrything connected to the environment
+
+venv/
+.idea/
+
+# Excluding any output 'target'-files
+
+*.txt
+*target*.*
+*output*.*
+output/
