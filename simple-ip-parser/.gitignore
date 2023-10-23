@@ -1,5 +1,7 @@
-output.txt
+*.txt
+*.html
 venv/
 .DS_Store/
 .idea/
 DS_Store/
+!requirements.txt

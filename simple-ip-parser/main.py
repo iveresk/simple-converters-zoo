@@ -29,7 +29,7 @@ def findips(target):
             foundip = False
             foundwin = False
             for td in tr:
-                if re.search(re.compile(ip), td.string) is not None:
+                if re.fullmatch(re.compile(ip), td.string) is not None:
                     foundip = True
                 if re.search('Microsoft', td.string) is not None or re.search('Windows', td.string) is not None:
                     foundwin = True
